@@ -1,0 +1,13 @@
+<div class="inlineprop traffic-light-widget">
+
+    <div class="traffic-light-text-top"><h3>Обратите внимание на дорожную обстановку<div class="traffic-light-text-more">Это может повлиять на время прибытия мастера на место для оказания помощи</div></h3></div>
+    <div class="traffic-light">
+        <div class="light">
+            <span id=text_bal></span>
+        </div>
+    </div>
+    <div class="traffic-light-text-bottom">Это может повлиять на время прибытия мастера на место для оказания помощи</div>
+</div>
+<hr>
+<!--<script src="/js/trafic_widget.js" defer></script>-->
+{{ $scripts := print $scripts (resources.Get "js/trafic_widget.js") }}

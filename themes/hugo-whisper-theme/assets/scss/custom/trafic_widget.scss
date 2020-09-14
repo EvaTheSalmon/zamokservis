@@ -1,0 +1,60 @@
+.traffic-light-widget {
+  max-width: 720px;
+}
+
+.traffic-light-text-top {
+  width: calc(100% - 180px);
+  text-align: left;
+  display: inline-block;
+  margin: 10px;
+}
+
+.traffic-light-text-bottom {
+  font-size: 1.4em;
+  display: none;
+}
+
+.traffic-light-text-more {
+  display: inline-block;
+}
+
+@include media-breakpoint-down(sm) {
+  .traffic-light-text-bottom {
+    display: inline-block;
+  }
+  .traffic-light-text-more {
+    display: none;
+  }
+}
+
+.traffic-light {
+  display: inline-block;
+  margin: 10px;
+  height: 120px;
+  width: 120px;
+  position: relative;
+  background: #333;
+  border: 0.5em solid #ccc;
+  border-radius: 2em;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  margin: -40px 0 0 -40px;
+  border-top: 0.5em solid #000;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+.light span {
+  font-size: 50px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}

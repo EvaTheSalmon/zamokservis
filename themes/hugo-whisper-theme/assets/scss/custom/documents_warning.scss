@@ -1,0 +1,12 @@
+.docs_warn{
+  p{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  @include media-breakpoint-up(md) {
+    width: 80%;
+  }
+  @include media-breakpoint-up(lg) {
+    width: 60%;
+  }
+}

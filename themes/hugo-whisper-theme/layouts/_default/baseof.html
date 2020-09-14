@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  {{ $file_name := trim .File.LogicalName ".md" }}
+
+  {{ $urlAMP := print "static/amp/" $file_name ".amp.html"}}
+
+  {{ $ampPath := trim .File.Path ".md" }}
+
+
+
+
+  {{ if eq $file_name "_index" }}
+    <link rel=amphtml href=https://zamokservis.com/amp/index.amp.html />
+    <link rel=canonical href=https://zamokservis.com />
+  {{ else }}
+    {{ if (fileExists $urlAMP) }}
+      <link rel=amphtml href=https://zamokservis.com/amp/{{ $file_name }}.amp.html />
+      {{ if eq (path.Dir $ampPath) "."}}
+      <link rel=canonical href=https://zamokservis.com/{{$file_name}}/ />
+      {{else}}
+  <link rel=canonical href=https://zamokservis.com/{{ path.Dir $ampPath }}/{{$file_name}}/ />
+    {{end}}
+    {{ end }}
+  {{ end }}
+
+  <meta name=keywords content="замена,замок,вскрытие,ремонт,открыть,спб,мастер" />
+  <meta content="Круглосуточное вскрытие и установка замков в Санкт-Петербурге и Ленинградской области. Вскрытие автомобилей. Вскрытие сейфов." name=description />
+
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{{ block "title" . }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ block "meta_tags" . }}{{end}}
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/ico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/ico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/ico/favicon-16x16.png">
+  <link rel="manifest" href="/ico/site.webmanifest">
+  <link rel="mask-icon" href="/ico/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/ico/favicon.ico">
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="msapplication-config" content="/ico/browserconfig.xml">
+  <meta name="theme-color" content="#eef2f5">
+
+
+
+
+
+
+
+  {{$urlCSS:= print "themes/hugo-whisper-theme/assets/scss/pages/" $file_name ".scss"  }}
+
+  {{- if .Site.IsServer -}}
+    {{ if (fileExists $urlCSS) }}
+      {{ $style := resources.Get (print "scss/pages/" $file_name ".scss") | toCSS (dict "targetPath" (print "css/" $file_name ".css") "enableSourceMap" false)}}
+      <link rel="stylesheet" href="{{ ($style).RelPermalink }}">
+
+      {{ else }}
+
+      {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" "css/main.css" "enableSourceMap" false)}}
+      <link rel="stylesheet" href="{{ ($style).RelPermalink }}">
+    {{ end }}
+
+  {{ else }}
+
+    {{ if (fileExists $urlCSS) }}
+      {{ $style := resources.Get (print "scss/pages/" $file_name ".scss") | toCSS (dict "targetPath" (print "css/" $file_name ".css") "enableSourceMap" false) | resources.PostCSS | minify}}
+      <link rel="stylesheet" href="{{ ($style).RelPermalink }}">
+
+      {{ else }}
+
+      {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" "css/main.css" "enableSourceMap" false) | resources.PostCSS | minify}}
+      <link rel="stylesheet" href="{{ ($style).RelPermalink }}">
+    {{ end }}
+
+  {{ end }}
+
+  {{ block "header_css" . }}{{ end }}
+
+
+</head>
+
+<body class='page {{ block "body_classes" . }}{{ end }}'>
+
+  <div class=top_bar>
+    <div class=top_pic></div>
+    <div class=sign><a href=tel:+79219405094 class=phone_link title=Телефон>
+      <span class=phone>+7 (921) 940 50 94</span>
+    </a></div>
+  </div>
+
+  {{ partial "main-menu-mobile.html" . }}
+  <div class="wrapper">
+    {{ partial "header.html" . }}
+
+    {{ if $.Params.show_sidebar }}
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            {{ partial "sidebar.html" . }}
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          {{ block "main" . }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    {{ else }}
+    {{ block "main" . }}
+    {{ end }}
+    {{ end}}
+  </div>
+
+  {{ partial "sub-footer.html" . }}
+
+  {{ $scripts := resources.Get "js/scripts.js" }}
+
+  {{ block "footer_js" . }}
+  {{ end }}
+
+  {{ if .Site.IsServer }}
+  <script type="text/javascript" src="{{ $scripts.RelPermalink }}"></script>
+  {{ else }}
+  <script type="text/javascript" src="{{ ($scripts | minify | fingerprint).RelPermalink }}"></script>
+  {{ end }}
+
+  {{ partial "google-analytics.html" . }}
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://www.schema.org",
+      "@type": "EmergencyService",
+      "name": "Энигма Вскрытие и установка замков",
+    {{ if eq $file_name "_index" }}
+      "url": "https://zamokservis.com/",
+    {{ else }}
+      "url": "https://zamokservis.com/{{ $file_name }}/",
+    {{ end }}
+      "paymentAccepted": [ "cash", "credit card" ],
+      "logo": "https://zamokservis.com/img/logo.png",
+      "image": "https://zamokservis.com/img/logo.png",
+      "priceRange": "1000-5000",
+      "telephone": "+7(921)940-50-94",
+      "description": "Круглосуточное вскрытие и установка замков в Санкт-Петербурге и Ленинградской области. Вскрытие автомобилей. Вскрытие сейфов.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Сиреневый бульвар, 23/1",
+        "addressLocality": "Санкт-Петербург",
+        "addressRegion": "Санкт-Петербург",
+        "postalCode": "194352",
+        "addressCountry": "Россия"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "60.0529158",
+        "longitude": "30.3576092"
+      },
+      "openingHours": "Mo,Tu,We,Th,Fr,Sa 00:00-23:59",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+7(921)940-50-94",
+        "contactType": "customer service"
+      },
+      "sameAs": "https://vk.com/dveri_zamki_spb"
+    }
+  </script>
+</body>
+
+</html>

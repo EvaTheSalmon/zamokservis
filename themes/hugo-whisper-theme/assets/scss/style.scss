@@ -1,0 +1,245 @@
+//Normalize
+@import "normalize";
+
+// Font
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Lora:400,700|Roboto+Mono:300,400&display=swap');
+
+// Bootstrap
+@import 'bootstrap/functions';
+@import 'bootstrap-variables';
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';
+@import 'bootstrap/reboot';
+@import 'bootstrap/utilities';
+@import 'bootstrap/grid';
+@import 'bootstrap/tables';
+
+// Libraries
+@import 'libraries/hamburgers/hamburgers';
+@import 'libraries/pygments/github';
+
+// Components
+@import 'components/reset';
+@import 'components/type';
+@import 'components/page';
+@import 'components/header';
+@import 'components/footer';
+@import 'components/sub-footer';
+@import 'components/logo';
+@import 'components/main-menu';
+@import 'components/main-menu-mobile';
+@import 'components/docs-menu';
+@import 'components/hamburger';
+@import 'components/buttons';
+@import 'components/title';
+@import 'components/content';
+@import 'components/strip';
+@import 'components/whitebox';
+@import 'components/overview';
+@import 'components/anchor';
+
+//Pages with lists
+.main,.page-default-single {
+  .sidebar ul{
+    text-align: left;
+  }
+
+  @include media-breakpoint-down(sm) {
+    .sidebar ul{
+      text-align: center;
+    }
+  }
+
+  .traffic-light-widget{
+    max-width: 620px;
+  }
+
+  .title {
+    font-weight: lighter;
+    font-family: $font-family-base;
+  }
+  p {
+    text-align: justify;
+    margin: 0 auto;
+
+    margin-bottom: 40px;
+    @include media-breakpoint-up(md) {
+      width: 100%;
+    }
+    @include media-breakpoint-up(lg) {
+      width: 80%;
+    }
+  }
+  .terminal {
+    border-radius: 3px;
+    margin: 0 auto;
+    margin-top: -200px;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+// Global
+body {
+  font-family: $font-family-base;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: $black;
+}
+.container {
+  padding-left: $grid-gutter-width;
+  padding-right: $grid-gutter-width;
+}
+.main,.page-default-single {
+  text-align: center;
+  .title {
+    font-weight: lighter;
+    font-family: $font-family-base;
+  }
+  p {
+    text-align: justify;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    margin-bottom: 40px;
+    @include media-breakpoint-up(md) {
+      width: 80%;
+    }
+    @include media-breakpoint-up(lg) {
+      width: 60%;
+    }
+  }
+  .terminal {
+    border-radius: 3px;
+    margin: 0 auto;
+    margin-top: -200px;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.content > h1, .content > h2, .content > h3, .content > h4, .content > h5, .content > h6{
+  margin: 0 auto;
+  margin-bottom: 40px;
+  @include media-breakpoint-up(md) {
+    width: 80%;
+  }
+  @include media-breakpoint-up(lg) {
+    width: 60%;
+  }
+}
+
+//Custom
+@import "custom/common";
+@import "custom/advantages";
+@import "custom/documents_warning";
+@import "custom/town_widget";
+@import "custom/how_to_call";
+@import "custom/price_selector";
+@import "custom/lock_types";
+@import "custom/trafic_widget";
+@import "custom/about_company";
+@import "custom/we_are";
+@import "custom/also";
+@import "custom/skill_bar";
+@import "custom/header_image";
+
+.top_bar {
+  position: fixed;
+  z-index: 2;
+  opacity: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  padding: 5px 0 5px 10px;
+
+  text-align: center;
+  text-decoration: none;
+
+  background-color: rgba(255,255,255,.921);
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+
+   .sign, .top_pic {
+    display: inline-block;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 5px 0 5px;
+
+    vertical-align: middle;
+  }
+
+  .top_text {
+    width: 100%;
+    height: 56px;
+    margin: 0 0 1rem;
+
+    color: white;
+  }
+
+  .top_text > span {
+    text-align: center;
+
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+    font-size: 2.5rem;
+  }
+
+  .logo_bar {
+    width: 100%;
+    padding-top: 70px;
+  }
+
+  .logo_bar > img {
+    display: inline-block;
+  }
+
+  .logo {
+    display: block;
+
+    width: 300px;
+    height: 100px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .top_pic {
+    width: 37px;
+    height: 37px;
+
+    vertical-align: middle;
+
+    background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAKSklEQVRoQ7VZe2xb1Rn/fec6TkJIU0iEYFSsQAdtfJMxBVbS2Km30vIofcSOpSFUYBtogHiUd2k1Ekp5DYomoKUaK2Mb0K6x0xdQQLB6sduokzLa2g6v0gJjhdFA6fKwE/vebzo3tnvj2I4Tyvkn8Tnn+853fud7X8KJGq2tom57pLyvZLCstOgkq5YYEgkdWhE4WjSY6Ovq2j5woo6iJKPUX/mTAZh/m88atXaWff7kSVQyH6DZAE8lUKUOKiPWFYDiTDhGwBEGPgLp/qP98bcPd22PfpcLZBNazulJwTOFTK2JC5yLJyUSltsBLAfBWrAQzL1MaIkOiBcOdrX1JkFKnZMNsMw1ziZ03vPPqbtkUklJxRJFiFsZfF7Bwo7ayO8B9JxFSfx1r3/LsfHwMauBSN46k17e1Firq1tQGiu1biSiywAUZW4kQGPGp0z4UAB9TKgA43wAU5I8MkniIPhjg8XNB/a8LFFPjXyvndZduSmvLtfUu6frCr1IhJkZJ/eAEWBgi0WLvbOv89XDpnXjwtUNnikKJeYwlCtBmAXg9AweIT3B13Z3+vYm5/PKkk890oQS4aHS4jeY0JBGjKGDeBuxWGWNxt7rKsC4JJ+olc4XlqI7ALoKgCUlJDP2xS1Fcz/0b/h6LFUxC53VCGpr55XpFeWbALrCxKyPGWv6LT2tn/j9sSzeJq9hOZ1OyxGt6hYCHgBwSoovA+8WKYmf7/Vv+TYfz/wuz+MR1V/otwui1SaBj+qsL+sOtv8xhw2MBVR6XW1oboLAswDOSAvOWMXf0EPd3W3xXIzyurxap+tMXRM7AUxLM2A8GA56V5rcYiHGk9Ow1EbPr8D8fApZAg6DdUco2H4oQ7/Tr5fX5al21wMg0WoSuC1W3r/kwI4dQwXDOfZGstmbnybCzSbBfx8KeO8cC2m5PsLlTZt5eXlJcdlnYFQkiT/jBM2JdLZ9nMEs5XmynVFIoCK18RdToCfeAmG6ZEJAlIeGzg7v2fZVNq+W0xCr7c3XCcIL6bdnrLFGD93R1dWVyJBuXGE/wx0a5zudTqVHq3wUoLtT6zpwW3fAK/U9c+SKiB6h2nkTCK4khc6szY8EN7859mtPbEeNo6mRofzdFIRerVJ6mvx+v5bJMSvSP3F4quLM8rkuGCagWFwfPO2DXdv6siBVSL5gPjerO5xSX18y2XKmVIeThzfzPgzFL02qiDGRyoeyGqLNsWgGYHmNQFOTp+0OB7z2iWFYOJXqaN4OYH6S4qDQ6Yr9u9o+zId0Wn2r7e6LBNE2AKcNX5rXh4O+G5I3HSsDzJUSjJnJqfbmFhBakoJ8rmuJBd27t8jQbuaZVae5xuGZzeCtQMpz8BPhgO++wjGb2E7V4f6NzPyS1EeEri/cv6t9Ty6k5bzh8qZOdRaXT6l8mol+mc4NGKvDQe89ctO0mVeXl1hjCxn8A5HQdoQ6t0bMkbF23ryTOFZxa0IkXn3Pv7k7tVZ3iWfS0BA16JQ4Al3ILHE4axcSRv1f4UD76zaHeymBnkoKOcigRyKBtlWZkXeEIV7gXDxZ0yxeBuaMsBzG/4TGM0Odvg9q7M3PMOGHDMQAqhUJfZGcNy407XJr6ellK5lwE7N+YyTY/koqYNgc7nkA/xigjwm0NGlsxQBVs86r+ah4mCo5QuboO2x+m2Px/usO7NmRSl1Hqofa6PaAxZ8BLsl4Egbz0nDQ94w6c+Fpem/x0dLSgzxYevaTIB4KB3z3yv1qY/NcZrqToJcyY10k6NuY4mOzu18mxlPhXb6u9Nws14Wk0PN6LHoZrGVWQXwIZLy4ecQY+pJIoN2XNrrkPwbiNoe7lUAy88oczMCySMD7xPGFVrI5wk8C6IsEvC22+ktPIUu5n1m7l4TlZta1jSmka2Y3Xcy6pSWsHLkSfr8MToZhqQ2up5nwVSTY/vD0+kWqRSnam0VoqUXLuwPeR7O5PFIdzQ8ZNV8WoYl4eajD93hqSb24aTqKlPWs0DUiMfA1o3Q9Ez7qV3paTk5UbmJgg0S6utpTRJX6i9D5+ciudn+avrFpOlhsAOlXhTs2v1/b4JqpC7ErS4XDzLg/EvT+LivSqqP5fgAPZxFaTq0IB7yPSfM5z7mgyqoV/4MJGyId3kdsDncTQbxAxG9C5zjLypzoE13HMkXBMWa+LxxQrwFapdszqhnV0bwNjM/DwZ5bAH9CbWiaC6G8kUVonZjvCQV90kCNFxoRXAzrZXoy2xMR4behDu+qGY3uHyk61jJwcDA+cI80EFu951wS2mwWZOgjgW4B8E9W6HHS9Lkg+m+4w7s5BUZ1Q7NdCLxCCZ6bMuIah3sRg9qzJP8JgG8LB3zrciBt+MlnTGVQGnQCt0QhnithfouJJxNoOwNRYv6PNFDz66h291ZDPS6p+Zv6TvgvoPj94Y6t/zYE8niE+qX+LEBHwwHviiQdq3bXEpB0AqN6LoNE+HWowys9kTFGuDyb3X0VEf0JQPEoFSE8GGNaUwy+0VhjsIQUwBeRgHe9OYWstrtuUKB0DUZjnxadZJ0dCfgkylItUhnd9X292sZP9hqtAyNSJgPL2ixCDxCxJ9Th25G64Aj1UA3jUIIATh3lPsArIwHf8YIgh+JPdFp1uJYBQtpTZnfrW12jn3XvbtuXFWlJUO1wPy6Y7srQa2bmWyNBn0QiNcbMJXK0JUbTOZ2KTataS4DMb8yDGfxWJOCTSZRMUUcbotxdV1dnGSydetNwf0JMBqQ3wAFF0x7dv3vzkYkimY/uPOeCSqtmfR2gi4b3sYx+7zPTzl5EH/ss+JqsztMjV2HLU+o9JZOKoVi+Ocb7Tx0axHAynrfzY855x9NWmNHovlxhkgma0QdhXX8Aev+akqGe3q6uLlmVj53ljadr+l2Rl2kBW4s6CGT0BRl0GInB2ZHObZm1aF6kv6scuehHVTjVTk8ZafwsAdeaiNbFvuhfeuBAuuIfRZet3Doh5VPKPeVoGaPa4ykSX+q3AyRTz1SruJcS/NNQp+99E11mY3T8rd4T8QwzHK7TBWg5QVxvyih7wfq14WD7lrHOGLOXlwupcRjdCKSMkG9hGa5rTMJpYG4JB32PZLzQCPeXt7Ad66a51msaXQ4GucDiQkA/C0xVIJQAJPNxWckfBuFcc2/baMww1sbi/StNiX5eEfL28goODkYu7nITiXVgI5pmRrVcQnwLXb87Nin6UrLVVog9ZS9sx+vyzm9YeIZFFO+kwj9nDAD0LgErQoG2jvG+bN4GZKHMbA0uJwkhy6F0rzkPrfzEsUIg+ofQ8Ug3rtbaCXF56qzF86BYNh1vOeQUOUqM1aGgV/Y2zP2TUW7te3d56qzF57CivG3qSI2SWn5HZMKD3aa8uNCXzNx3olyeUBvcd0FQuo4zuzMCXgJb7wgFX5H5c64O1XAUH5lnfM8ur7WVbG+HbyTC1cYnOMYAwPuh0/riwUM7s7SIJwp0zk9yo76SmjxKnrVWqp21rypuERVI8FC8Ivql6avBBHmOQp//D8MwioNCoxOGAAAAAElFTkSuQmCC');
+    background-position-x: center;
+    background-position-y: center;
+    background-size: contain;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .sidebar{
+    display: none;
+  }
+}
+blockquote{
+  @include media-breakpoint-up(md) {
+    width: 80%;
+  }
+  @include media-breakpoint-up(lg) {
+    width: 60%;
+  }
+  li{
+    font-size: 1.2em;
+    text-align: left;
+  }
+}

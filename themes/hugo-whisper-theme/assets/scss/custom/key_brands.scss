@@ -1,0 +1,38 @@
+.brands{
+  .brand_pannel{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+    display: inline-block;
+    font-size: 1.3rem;
+    margin: 10px;
+    padding: 20px;
+    -webkit-transition: all 0.3s ease;;
+    -moz-transition: all 0.3s ease;;
+    -o-transition: all 0.3s ease;;
+    transition: all 0.3s ease;
+  }
+  .brand_pannel:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .4);
+  }
+  .brand_pannel > img {
+    height: 70px;
+    max-width: 90%;
+  }
+  .brands span {
+    color: #000;
+  }
+  .hidebut{
+    margin-top: 25px;
+    background-color:transparent;
+    border: 1px solid #adabaa;
+    border-color: #adabaa #e3dedb #e3dedb #adabaa;
+    color: black;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: none;
+    font-size: 16px;
+  }
+  span{
+    display: block;
+  }
+}

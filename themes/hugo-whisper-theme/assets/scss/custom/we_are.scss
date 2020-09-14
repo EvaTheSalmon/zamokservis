@@ -1,0 +1,75 @@
+.we_are {
+  a {
+    color: $primary;
+    text-decoration: none;
+
+    &:hover {
+      color: lighten($primary, 20%);
+    }
+  }
+
+  .inner {
+    margin: 0 auto;
+  }
+
+  .activity {
+    padding: 0;
+    margin: 2em 0;
+    list-style: none;
+
+    li {
+      -webkit-transition: box-shadow 0.2s ease;
+      -moz-transition: box-shadow 0.2s ease;
+      transition: box-shadow 0.2s ease;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 50%;
+
+      width: 20vw;
+      height: 20vw;
+      max-width: 100px;
+      max-height: 100px;
+
+      display: inline-block;
+
+
+      margin: 0 1em 1em;
+      position: relative;
+
+
+
+
+      a {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+
+
+    &:hover {
+      opacity: .65;
+    }
+    }
+    .tg{
+      background-image: url("/img/tg.png");
+      background-position-x: center;
+      background-position-y: center;
+      background-size: contain;
+    }
+    .wa{
+      background-image: url("/img/whatsapp.png");
+      background-position-x: center;
+      background-position-y: center;
+      background-size: contain;
+    }
+    .vk{
+      background-image: url("/img/vk.png");
+      background-position-x: center;
+      background-position-y: center;
+      background-size: contain;
+    }
+  }
+}

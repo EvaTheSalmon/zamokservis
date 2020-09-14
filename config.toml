@@ -1,0 +1,72 @@
+baseURL = "https://zamokservis.com"
+languageCode = "ru-ru"
+title = "Энигма | Вскрытие замков"
+themesDir = "themes"
+theme = "hugo-whisper-theme"
+
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
+
+# Controls how many words are printed in the content summary on the docs homepage.
+# See https://gohugo.io/content-management/summaries/
+summaryLength = 30
+
+[[menu.main]]
+    name = "На главную"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Блог"
+    url = "/blog/"
+    weight = 2
+
+[[menu.main]]
+    name = "Установка замков"
+    url = "/ustanovka-zamkov/"
+    weight = 2
+
+[[menu.main]]
+    name = "Вскрытие автомобилей"
+    url = "/vskrytie-avtomobilej/"
+    weight = 2
+
+[[menu.main]]
+    name = "Вскрытие дверей"
+    url = "/vskrytie-dverej/"
+    weight = 2
+
+[[menu.main]]
+    name = "Вскрытие сейфов"
+    url = "/vskrytie-sejfov/"
+    weight = 2
+
+[params]
+  google_analytics_id="UA-117164428-1"
+  homepage_button_link = '/'
+  homepage_button_text = 'На главную'
+  homepage_intro = 'Круглосуточное вскрытие и установка замков в Санкт-Петербурге и Ленинградской области. Вскрытие автомобилей. Вскрытие сейфов.'
+  homepage_image = ''
+
+  ## You can enable to add anchor links to header elements
+  # enable_anchor_link = true
+
+  [params.homepage_meta_tags]
+    meta_description = "Круглосуточное вскрытие и установка замков в Санкт-Петербурге и Ленинградской области. Вскрытие автомобилей. Вскрытие сейфов."
+    meta_og_title = "Круглосуточное вскрытие замков, автомобилей и сейфов. Установка замков в Санкт-Петербурге."
+    meta_og_type = "website"
+    meta_og_url = "https://zamokservis.com"
+    meta_og_image = "https://zamokservis.com/img/logo.png"
+    meta_og_description = "Круглосуточное вскрытие и установка замков в Санкт-Петербурге и Ленинградской области. Вскрытие автомобилей. Вскрытие сейфов."
+    meta_twitter_card = "Служба вскрытия замков"
+    meta_twitter_site = "@enigma84179431"
+    meta_twitter_creator = "@enigma84179431"
+
+  [params.logo]
+      mobile = "https://zamokservis.com/img/logo.png"
+      standard  = "https://zamokservis.com/img/logo.png"
+
+[outputs]
+  home = ["HTML"]
+  page = ["HTML"]
