@@ -153,5 +153,7 @@
     });
 
 </script>
+{{ $style := resources.Get "scss/custom/safe_gallery_widget.scss" | toCSS (dict "targetPath" "css/safe_gallery_widget.css" "enableSourceMap" false) | resources.PostCSS | minify}}
+<link rel="stylesheet" href="{{ ($style).RelPermalink }}">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js" defer></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.7.2/js/lightgallery-all.min.js" defer></script>

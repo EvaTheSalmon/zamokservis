@@ -1,1 +1,0 @@
-$(document).ready(function() { $(".hidebut").click(function() { "collapse" === this.value ? (open = !1, this.value = "expand", $(".hidebut").text("Показать"), $(".divhide").hide("slow")) : (open = !0, this.value = "collapse", $(".hidebut").text("Скрыть"), $(this).siblings("[value='collapse']").click(), $(".divhide").show("slow")) }) });

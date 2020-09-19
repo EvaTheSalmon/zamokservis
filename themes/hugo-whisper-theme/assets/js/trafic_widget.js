@@ -19,7 +19,7 @@ const traffic = [
 const colorTL = ["#00dd00", "#98ff98", "#ccff00", "#fbf82d", "#f7e164", "#f4c023", "#ff9966", "#ff0000", "#ff4d00", "#f36223"];
 
 window.onload = function () {
-    currentTime = new Date();
+    let currentTime = new Date();
     let bal = document.getElementById('text_bal');
     let day = currentTime.getDay();
     let hour = currentTime.getHours();

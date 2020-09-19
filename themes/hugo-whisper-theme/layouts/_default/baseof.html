@@ -9,9 +9,6 @@
 
   {{ $ampPath := trim .File.Path ".md" }}
 
-
-
-
   {{ if eq $file_name "_index" }}
     <link rel=amphtml href=https://zamokservis.com/amp/index.amp.html />
     <link rel=canonical href=https://zamokservis.com />
@@ -27,7 +24,6 @@
   {{ end }}
 
   <meta name=keywords content="замена,замок,вскрытие,ремонт,открыть,спб,мастер" />
-  <meta content="Круглосуточное вскрытие и установка замков в Санкт-Петербурге и Ленинградской области. Вскрытие автомобилей. Вскрытие сейфов." name=description />
 
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>{{ block "title" . }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
@@ -56,24 +52,28 @@
   {{- if .Site.IsServer -}}
     {{ if (fileExists $urlCSS) }}
       {{ $style := resources.Get (print "scss/pages/" $file_name ".scss") | toCSS (dict "targetPath" (print "css/" $file_name ".css") "enableSourceMap" false)}}
-      <link rel="stylesheet" href="{{ ($style).RelPermalink }}">
+      <link rel=preload as=style href="{{ ($style).RelPermalink }}">
+      <link rel="stylesheet" type=text/css href="{{ ($style).RelPermalink }}">
 
       {{ else }}
 
       {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" "css/main.css" "enableSourceMap" false)}}
-      <link rel="stylesheet" href="{{ ($style).RelPermalink }}">
+      <link rel=preload as=style href="{{ ($style).RelPermalink }}">
+      <link rel="stylesheet" type=text/css href="{{ ($style).RelPermalink }}">
     {{ end }}
 
   {{ else }}
 
     {{ if (fileExists $urlCSS) }}
       {{ $style := resources.Get (print "scss/pages/" $file_name ".scss") | toCSS (dict "targetPath" (print "css/" $file_name ".css") "enableSourceMap" false) | resources.PostCSS | minify}}
-      <link rel="stylesheet" href="{{ ($style).RelPermalink }}">
+      <link rel=preload as=style href="{{ ($style).RelPermalink }}">
+      <link rel="stylesheet" type=text/css href="{{ ($style).RelPermalink }}">
 
       {{ else }}
 
       {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" "css/main.css" "enableSourceMap" false) | resources.PostCSS | minify}}
-      <link rel="stylesheet" href="{{ ($style).RelPermalink }}">
+      <link rel=preload as=style href="{{ ($style).RelPermalink }}">
+      <link rel="stylesheet" type=text/css href="{{ ($style).RelPermalink }}">
     {{ end }}
 
   {{ end }}
@@ -124,12 +124,12 @@
   {{ end }}
 
   {{ if .Site.IsServer }}
-  <script type="text/javascript" src="{{ $scripts.RelPermalink }}"></script>
+  <script type="text/javascript" src="{{ ($scripts).RelPermalink }}"></script>
   {{ else }}
-  <script type="text/javascript" src="{{ ($scripts | minify | fingerprint).RelPermalink }}"></script>
+  <script type="text/javascript" src="{{ ($scripts | babel | minify ).RelPermalink }}"></script>
   {{ end }}
 
-  {{ partial "google-analytics.html" . }}
+  {{ partial "analytics.html" . }}
 
   <script type="application/ld+json">
     {

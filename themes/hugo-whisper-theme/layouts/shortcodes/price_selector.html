@@ -49,6 +49,13 @@
 
         </form>
     <hr>
+
+    {{$scripts := resources.Get "js/configPrice.js"}}
+
+    {{ if .Site.IsServer }}
+    <script type="text/javascript" src="{{ ($scripts).RelPermalink }}"></script>
+    {{ else }}
+    <script type="text/javascript" src="{{ ($scripts | babel | minify ).RelPermalink }}" defer></script>
+    {{ end }}
 <!--<script src="/js/configPrice.js" type="application/javascript"></script>-->
-    {{ $scripts := print $scripts (resources.Get "js/configPrice.js") }}
 </div>

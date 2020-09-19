@@ -9,9 +9,6 @@
 
   
 
-
-
-
   
     
       <link rel=amphtml href=https://zamokservis.com/amp/vskrytie-avtomobilej.amp.html />
@@ -60,7 +57,8 @@
 
     
       
-      <link rel="stylesheet" href="/css/vskrytie-avtomobilej.min.css">
+      <link rel=preload as=style href="/css/vskrytie-avtomobilej.min.css">
+      <link rel="stylesheet" type=text/css href="/css/vskrytie-avtomobilej.min.css">
 
       
 
@@ -191,7 +189,321 @@
         <h1 class="title">Вскрытие автомобилей</h1>
         <div class="content">
           
-          <p>Круглосуточное вскрытие и установка замков в Санкт-Петербурге и Ленинградской области. Вскрытие автомобилей. Вскрытие сейфов.</p>
+          <picture class="header_image_box">
+    <source srcset=/img/src320/auto-image.jpg media="(max-width: 320px)">
+    <source srcset=/img/src360/auto-image.jpg media="(max-width: 360px)">
+    <source srcset=/img/src375/auto-image.jpg media="(max-width: 375px)">
+    <source srcset=/img/src414/auto-image.jpg media="(max-width: 414px)">
+    <source srcset=/img/src720/auto-image.jpg media="(min-width: 648px)">
+    <source srcset=/img/src1080/auto-image.jpg media="(min-width: 972px)">
+    <div class="cover">
+    <img class=img_block src=/img/src/auto-image.jpg alt="Вскрытие замков" />
+    </div>
+</picture>
+
+<div class="inlineprop listing">
+    <h2>Как вызвать:</h2>
+    <ol>
+            <p><span>1</span>Вызовите нас в любое время, если вы находитесь в Санкт-Петербурге или в Ленинградской области по круглосуточному телефону:
+                <a href=tel:+79219405094 class=phone_link title=Телефон>+7 (921) 940 50 94</a>
+            </p>
+            <p><span>2</span>Диспетчер принимает заказ и отправляет на ваш адрес ближайшего мастера</p>
+            <p><span>3</span>Мастер приезжает в максимально короткие сроки (от 15-60 минут) в зависимости от загруженности дорог</p>
+            <p><span>4</span>Время вскрытия составляет в среднем 10 минут</p>
+    </ol>
+    <p>Наш опыт работы более 19 лет. Доверяйте профессионалам.
+        Наши умения помогут Вам решить любую проблему, будь то дверь или замок.
+        Если Вам требуется аварийное вскрытие замков, обращайтесь к нам и мы Вам поможем.</p>
+</div>
+<hr>
+<div class="inlineprop">
+        <form class="formprice">
+                <div class="calc-img"></div>
+                <div class=price_selector>
+                    <h3>Узнать цену услуги</h3>
+                    <div class="mainpr">
+                        <select id=offer_main onblur="main_func()">
+                            <option id=zero>--Выберете услугу--</option>
+                            <option id=lc selected="selected">Вскрытие замка</option>
+                            <option id=sf>Вскрытие сейфа</option>
+                            <option id=au>Вскрытие автомобиля</option>
+                            <option id=in>Установка замка</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div id=offer_lock_div class="selectbox lockpr" >
+                            <select id=offer_lock onblur="lock_func()">
+                                <option id=offer_lock_zero>--Выберете услугу--</option>
+                                <option id=offer_lock_ru selected="selected">Российские замки</option>
+                                <option id=offer_lock_im>Импортные замки</option>
+                            </select>
+                        </div>
+                        <div id=offer_safe_div class="selectbox safepr" hidden>
+                            <select id=offer_safe onblur="safe_func()">
+                                <option id=offer_safe_zero>--Выберете услугу--</option>
+                                <option id=offer_safe_ru>Российские сейфы</option>
+                                <option id=offer_safe_sf>Импортные сейфы</option>
+                            </select>
+                        </div>
+                        <div id=offer_auto_div class="selectbox autopr" hidden>
+                            <select id=offer_auto onblur="auto_func()">
+                                <option id=offer_auto_zero>--Выберете услугу--</option>
+                                <option id=offer_auto_li>Легковые автомобили</option>
+                                <option id=offer_auto_gr>Грузовые автомобили</option>
+                                <option id=offer_auto_mh>Механический блокиратор</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="inf">
+                    <span>Ориентировочная цена от: </span>
+                    <span id=sum>1500 руб.</span>
+                    <p>Рассчитано на основании актуальных цен мастеров. Окончательную стоимость работ мастер определяет на месте.</p>
+                    <div class=payway>
+                        <div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAyCAYAAADx/eOPAAABJmlDQ1BBZG9iZSBSR0IgKDE5OTgpAAAoz2NgYDJwdHFyZRJgYMjNKykKcndSiIiMUmA/z8DGwMwABonJxQWOAQE+IHZefl4qAwb4do2BEURf1gWZxUAa4EouKCoB0n+A2CgltTiZgYHRAMjOLi8pAIozzgGyRZKywewNIHZRSJAzkH0EyOZLh7CvgNhJEPYTELsI6Akg+wtIfTqYzcQBNgfClgGxS1IrQPYyOOcXVBZlpmeUKBhaWloqOKbkJ6UqBFcWl6TmFit45iXnFxXkFyWWpKYA1ULcBwaCEIWgENMAarTQZKAyAMUDhPU5EBy+jGJnEGIIkFxaVAZlMjIZE+YjzJgjwcDgv5SBgeUPQsykl4FhgQ4DA/9UhJiaIQODgD4Dw745AMDGT/0ZOjZcAAAACXBIWXMAAC4jAAAuIwF4pT92AAAHMWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDE5LTA4LTE3VDIxOjM2OjE1KzAzOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0wOC0yMFQyMDoyNDozOSswMzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAxOS0wOC0yMFQyMDoyNDozOSswMzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJBZG9iZSBSR0IgKDE5OTgpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOmUxNDlhMGI0LTFmYjgtYzc0ZC05M2JiLTc3NmU4ZDI3ZTI1MCIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjQ5YzY2MjM4LWQ3NWEtMDI0Yi1hY2U4LTQ1NDUxNWNiZWQxZSIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOmU4Yzk0NzNjLTE4NTEtYTc0MC04OGU0LTg2MjYwYzU3OWY4YSI+IDx4bXBNTTpIaXN0b3J5PiA8cmRmOlNlcT4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNyZWF0ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6ZThjOTQ3M2MtMTg1MS1hNzQwLTg4ZTQtODYyNjBjNTc5ZjhhIiBzdEV2dDp3aGVuPSIyMDE5LTA4LTE3VDIxOjM2OjE1KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2luZG93cykiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNvbnZlcnRlZCIgc3RFdnQ6cGFyYW1ldGVycz0iZnJvbSBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIHRvIGltYWdlL3BuZyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NGExNjc1MjAtMjNkNC0yMTQyLTgwZjYtMzJlOGY4ZTAxMWJkIiBzdEV2dDp3aGVuPSIyMDE5LTA4LTE3VDIzOjMyOjQ5KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmUxNDlhMGI0LTFmYjgtYzc0ZC05M2JiLTc3NmU4ZDI3ZTI1MCIgc3RFdnQ6d2hlbj0iMjAxOS0wOC0yMFQyMDoyNDozOSswMzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmgXvBUAAAI9SURBVGje7ZpNK0RRGMfvQkPJQik2Vkp2NAvFxmdg4QOI5H2KiZCGGPKSjZESkaaslJpsKWUYFshrKLFRU2hMZqGM53DUM09njHvn5d5zu4vfYu49nfn/urdznnvOUZTeJgVRCLiAAPAMhNLMK3ABzAEVJIt60I964A2I6shwKmRqdZbAzCQjky/o8B5YAmbTzDxwJPj/Gq0yo6SjNSAr6fdXHR0kw75WmWvUyV2GJTAeIqRJJoI6mIrTsBIYBzYAXxrYBHaJjF/QrieRTBh1MCJoNGagwWE7kUwINR4iDRoNJMLwqpHBjzFLMO/cAAcZ5l2rTADdrCYiCzoNDCdaZRgr/KadXC/SSeYQZfColYnyDraATzL/zGSIScDNCaIMZ3xAagZK/isjC6xKyTaLDOMKyBPJsFK8jY8iT/wRG42IQMgvknGid9AG5BiQAv658kqE6qjMhI61mVrKgA+UfYfKjEsko/B55zf7i+wyfSh7RHaZIZQ9JLuMy5KxZNJPv5lkBmWRyeXl1TFwGYegDDI2HlZNwWlYGYeG6tmwMusxIX/KFhGnMsisokznf7TrlEFm+Z8yDhlkvGQRvywOczLILJppAKgykwyj20wyjFKgAWiJg89MtVmr9QlgyVgyycmEU3aoQN8vzTDdoJ2Q+Ml8r5vdogsXkskcx9RwfHMHz6TTkoi4Se55hW/v0dJgjy8WOAzIgODMAKPYqFvkammnR7S6JBVxis6bMcr5bvNDBg7OJcMj3zC24/xfduYmjRfU5/YAAAAASUVORK5CYII=" alt="Наличные" /><br /><span> Оплата наличными</span></div>
+                        <div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAAAyCAYAAADodg0pAAABMWlDQ1BBZG9iZSBSR0IgKDE5OTgpAAAoz62OsUrDUBRAz4ui4lArBHFweJMoKLbqYMakLUUQrNUhydakoUppEl5e1X6Eo1sHF3e/wMlRcFD8Av9AcergECGDgwie6dzD5XLBqNh1p2GUYRBr1W460vV8OfvEDFMA0Amz1G61DgDiJI74wecrAuB50647Df7GfJgqDUyA7W6UhSAqQP9CpxrEGDCDfqpB3AGmOmnXQDwApV7uL0ApyP0NKCnX80F8AGbP9Xww5gAzyH0FMHV0qQFqSTpSZ71TLauWZUm7mwSRPB5lOhpkcj8OE5UmqqOjLpD/B8BivthuOnKtall76/wzrufL3N6PEIBYeixaQThU598qjJ3f5+LGeBkOb2F6UrTdK7jZgIXroq1WobwF9+MvwMZP/U6/OGUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAa9aVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzE0MiA3OS4xNjA5MjQsIDIwMTcvMDcvMTMtMDE6MDY6MzkgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE4IChXaW5kb3dzKSIgeG1wOkNyZWF0ZURhdGU9IjIwMTktMDgtMTdUMjE6Mzc6MTQrMDM6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDE5LTA4LTIwVDIwOjI1KzAzOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDE5LTA4LTIwVDIwOjI1KzAzOjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgcGhvdG9zaG9wOklDQ1Byb2ZpbGU9IkFkb2JlIFJHQiAoMTk5OCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTlmMDQ3NWMtM2NlNy0zMTRiLTg1NjEtNDY3YjIyNzAxY2M3IiB4bXBNTTpEb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6YTU5YmRiZTEtYzU4NC1mNDQ2LThjMzMtOWFjYTA1YzI4ZDc1IiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6ODg0MDY3MmEtZDBjMS1mMDQxLTlkNzEtNWI1NmU5NGY1OThhIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo4ODQwNjcyYS1kMGMxLWYwNDEtOWQ3MS01YjU2ZTk0ZjU5OGEiIHN0RXZ0OndoZW49IjIwMTktMDgtMTdUMjE6Mzc6MTQrMDM6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE4IChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6MjEwZGMwY2ItNjQ0ZC1iMDQ5LWExNDMtMjk4Y2ZkZWEyNGIwIiBzdEV2dDp3aGVuPSIyMDE5LTA4LTIwVDIwOjI1KzAzOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2luZG93cykiIHN0RXZ0OmNoYW5n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" alt="Перевод" /><br /><span> Или перевод между картами</span></div>
+                    </div>
+                </div>
+
+        </form>
+    <hr>
+
+    
+
+    
+    <script type="text/javascript" src="/js/configPrice.min.js" defer></script>
+    
+
+</div>
+<p>Выполняем срочное аварийное вскрытие автомобилей по городу Санкт-Петербург и по территории Ленинградской области в ситуации если машина закрылась с ключами в салоне или багажнике, сел аккумулятор и машина не открывается, потеряны ключи или просто сломался замок. Открываем машины без повреждений, не царапаем лкп и не бьем стекла. Мастер выезжает оперативно по звонку, чтобы помочь вам открыть вскрыть машину. Вскрытие замка выполняется после предъявления документов о праве пользования транспортным средством. Поможем вскрыть заклинившие замки, замки кпп, блокираторы, рейлинги и багажники.</p>
+<div class="inlineprop about_list">
+    <h2>О нас</h2>
+
+    <h3>Приятно познакомится. Мы – компания Энигма.</h3>
+
+    <section class="timeline">
+        <ul>
+            <li>
+                <div>
+                    <time>Работаем с 1999</time>Мы ведём работу на рынке оказания услуг вскрытия, взлома и установки замков уже более 20 лет.
+                </div>
+            </li>
+            <li>
+                <div>
+                    <time>По городу и области</time>Наша служба аварийного вскрытия работает круглосуточно и по всему Санкт-Петербургу и Ленинградской области.
+                </div>
+            </li>
+            <li>
+                <div>
+                    <time>Всё, что можно закрыть на замок</time>За всё то время, что наши мастера работают, они стали виртуозами по работе с дверными, гаражными, автомобильными и сейфовыми замками.
+                </div>
+            </li>
+            <li>
+                <div>
+                    <time>Специальное оборудование</time> Для  самых изощренных операций у наших мастеров есть проверенное оборудование и уникальный опыт.
+                </div>
+            </li>
+
+        </ul>
+    </section>
+    <hr>
+</div>
+<p>Наш опыт работы на рынке вскрытия автомобилей в Санкт-Петербурге составляет более 15  лет. Наши мастера открывают машины ежедневно. Несмотря на то, что  противоугонная сигнализация, замки на капот и багажник и дверные блокираторы призваны защитить машину от угона, мастер подберёт способ, что бы Вы могли попасть внутрь Вашей  машины.</p>
+<div class="inlineprop traffic-light-widget">
+
+    <div class="traffic-light-text-top"><h3>Обратите внимание на дорожную обстановку<div class="traffic-light-text-more">Это может повлиять на время прибытия мастера на место для оказания помощи</div></h3></div>
+    <div class="traffic-light">
+        <div class="light">
+            <span id=text_bal></span>
+        </div>
+    </div>
+    <div class="traffic-light-text-bottom">Это может повлиять на время прибытия мастера на место для оказания помощи</div>
+</div>
+<hr>
+
+
+
+<script type="text/javascript" src="/js/trafic_widget.min.js" defer></script>
+
+
+
+<div class=brands>
+    <h2>Работаем с любыми брэндами автомобилей</h2>
+    <button class=hidebut value="collapse">Скрыть</button>
+    <div class=divhide>
+        <a href=/vskrytie-auto/honda><div class=brand_pannel><img src=/img/car_brands/honda.jpg alt=Honda /><span>Honda</span></div></a>
+        <a href=/vskrytie-auto/ford><div class=brand_pannel><img src=/img/car_brands/ford.jpg alt=Ford /><span>Ford</span></div></a>
+        <a href=/vskrytie-auto/mazda><div class=brand_pannel><img src=/img/car_brands/mazda.jpg alt=Mazda /><span>Mazda</span></div></a>
+        <a href=/vskrytie-auto/nissan><div class=brand_pannel><img src=/img/car_brands/nissan.jpg alt=Nissan /><span>Nissan</span></div></a>
+        <a href=/vskrytie-auto/hyundai><div class=brand_pannel><img src=/img/car_brands/hyundai.jpg alt=Hyundai /><span>Hyundai</span></div></a>
+        <a href=/vskrytie-auto/toyota><div class=brand_pannel><img src=/img/car_brands/toyota.jpg alt=Toyota /><span>Toyota</span></div></a>
+        <a href=/vskrytie-auto/mitsubishi><div class=brand_pannel><img src=/img/car_brands/mitsubishi.jpg alt=Mitsubishi /><span>Mitsubishi</span></div></a>
+        <a href=/vskrytie-auto/volkswagen><div class=brand_pannel><img src=/img/car_brands/volkswagen.jpg alt=Volkswagen /><span>Volkswagen</span></div></a>
+        <a href=/vskrytie-auto/bmw><div class=brand_pannel><img src=/img/car_brands/bmw.jpg alt=BMW /><span>BMW</span></div></a>
+        <a href=/vskrytie-auto/audi><div class=brand_pannel><img src=/img/car_brands/audi.jpg alt=Audi /><span>Audi</span></div></a>
+        <a href=/vskrytie-auto/mercedes-benz><div class=brand_pannel><img src=/img/car_brands/mercedes-benz.jpg alt=Mercedes-Benz /><span>Mercedes-Benz</span></div></a>
+        <a href=/vskrytie-auto/jeep><div class=brand_pannel><img src=/img/car_brands/jeep.jpg alt=Jeep /><span>Jeep</span></div></a>
+        <a href=/vskrytie-auto/daewoo><div class=brand_pannel><img src=/img/car_brands/daewoo.jpg alt=Daewoo /><span>Daewoo</span></div></a>
+        <a href=/vskrytie-auto/chrysler><div class=brand_pannel><img src=/img/car_brands/chrysler.jpg alt=Chrysler /><span>Chrysler</span></div></a>
+        <a href=/vskrytie-auto/lexus><div class=brand_pannel><img src=/img/car_brands/lexus.jpg alt=Lexus /><span>Lexus</span></div></a>
+        <a href=/vskrytie-auto/volvo><div class=brand_pannel><img src=/img/car_brands/volvo.jpg alt=Volvo /><span>Volvo</span></div></a>
+        <a href=/vskrytie-auto/renault><div class=brand_pannel><img src=/img/car_brands/renault.jpg alt=Renault /><span>Renault</span></div></a>
+        <a href=/vskrytie-auto/subaru><div class=brand_pannel><img src=/img/car_brands/subaru.jpg alt=Subaru /><span>Subaru</span></div></a>
+        <a href=/vskrytie-auto/smart><div class=brand_pannel><img src=/img/car_brands/smart.jpg alt=Smart /><span>Smart</span></div></a>
+        <a href=/vskrytie-auto/suzuki><div class=brand_pannel><img src=/img/car_brands/suzuki.jpg alt=Suzuki /><span>Suzuki</span></div></a>
+        <a href=/vskrytie-auto/mini><div class=brand_pannel><img src=/img/car_brands/mini.jpg alt=Mini /><span>Mini</span></div></a>
+        <a href=/vskrytie-auto/fiat><div class=brand_pannel><img src=/img/car_brands/fiat.jpg alt=Fiat /><span>Fiat</span></div></a>
+        <a href=/vskrytie-auto/land-rover><div class=brand_pannel><img src=/img/car_brands/land-rover.jpg alt=Land-Rover /><span>Land Rover</span></div></a>
+        <a href=/vskrytie-auto/dodge><div class=brand_pannel><img src=/img/car_brands/dodge.jpg alt=Dodge /><span>Dodge</span></div></a>
+        <a href=/vskrytie-auto/citroen><div class=brand_pannel><img src=/img/car_brands/citroen.jpg alt=Citroen /><span>Citroen</span></div></a>
+        <a href=/vskrytie-auto/saab><div class=brand_pannel><img src=/img/car_brands/saab.jpg alt=Saab /><span>Saab</span></div></a>
+        <a href=/vskrytie-auto/kia><div class=brand_pannel><img src=/img/car_brands/kia.jpg alt=Kia /><span>Kia</span></div></a>
+        <a href=/vskrytie-auto/bentley><div class=brand_pannel><img src=/img/car_brands/bentley.jpg alt=Bentley /><span>Bentley</span></div></a>
+        <a href=/vskrytie-auto/maserati><div class=brand_pannel><img src=/img/car_brands/maserati.jpg alt=Maserati /><span>Maserati</span></div></a>
+        <a href=/vskrytie-auto/peugeot><div class=brand_pannel><img src=/img/car_brands/peugeot.jpg alt=Peugeot /><span>Peugeot</span></div></a>
+        <a href=/vskrytie-auto/ssangyong><div class=brand_pannel><img src=/img/car_brands/ssangyong.jpg alt=SsangYong /><span>SsangYong</span></div></a>
+        <a href=/vskrytie-auto/porsche><div class=brand_pannel><img src=/img/car_brands/porsche.jpg alt=Porsche /><span>Porsche</span></div></a>
+        <a href=/vskrytie-auto/daihatsu><div class=brand_pannel><img src=/img/car_brands/daihatsu.jpg alt=Daihatsu /><span>Daihatsu</span></div></a>
+        <a href=/vskrytie-auto/jaguar><div class=brand_pannel><img src=/img/car_brands/jaguar.jpg alt=Jaguar /><span>Jaguar</span></div></a>
+        <a href=/vskrytie-auto/aston-martin><div class=brand_pannel><img src=/img/car_brands/aston-martin.jpg alt=Aston-Martin /><span>Aston Martin</span></div></a>
+        <a href=/vskrytie-auto/rolls-royce><div class=brand_pannel><img src=/img/car_brands/rolls-royce.jpg alt=Rolls-Royce /><span>Rolls Royce</span></div></a>
+        <a href=/vskrytie-auto/ferrari><div class=brand_pannel><img src=/img/car_brands/ferrari.jpg alt=Ferrari /><span>Ferrari</span></div></a>
+        <a href=/vskrytie-auto/alfa-romeo><div class=brand_pannel><img src=/img/car_brands/alfa-romeo.jpg alt=Alfa-Romeo /><span>Alfa Romeo</span></div></a>
+        <a href=/vskrytie-auto/opel><div class=brand_pannel><img src=/img/car_brands/opel.jpg alt=Opel /><span>Opel</span></div></a>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js" type="application/javascript" defer></script>
+
+
+
+<script type="text/javascript" src="/js/hidebut.min.js" defer></script>
+
+
+
+<hr>
+<p>В зависимости от ситуации будет вестись работа с одним из замков  автомобиля. Так как причины запирания машины могут быть разные – мастер  может использовать разное оборудование. У специалистов компании Энигма всегда в наличии всё необходимое, в том  числе опыт и навыки работы.</p>
+<div class="regions inlineprop">
+
+    <div class="blog-card map-widget">
+        <div class="meta">
+            <div class="photo" style="background-image: url(/img/src/map.jpg)"></div>
+            <ul class="details">
+                <p>Осущесвляем вскрытие по Ленинградской области и Санкт-Петербургу</p>
+            </ul>
+        </div>
+        <div class="description">
+            <h1>Районы, в которых мы работаем</h1>
+            <h2>Оказание услуг по всей области</h2>
+            <p>Наша служба оказывает услуги по вскрытию дверей и замене замков во всех районах Санкт-Петербурга и большинстве городов Ленинградской области, в том числе:</p>
+        </div>
+    </div>
+
+    <ul>
+        <li><strong>А</strong>дмиралтейский</li>
+        <li><strong>В</strong>асилеостровский</li>
+        <li>Волхов</li>
+        <li><a href="/cities/vsevolojsk/">Всеволожск</a></li>
+        <li>Выборг</li>
+        <li>Выборгский</li>
+        <li><strong>Г</strong>атчина</li>
+        <li><a href="/cities/zelenogorsk/"><strong>З</strong>еленогорск</a></li>
+        <li><strong>К</strong>алининский</li>
+        <li>Кингисепп</li>
+    </ul>
+    <ul>
+        <li><a href="/cities/kirovsk/">Кировск</a></li>
+        <li><a href="/cities/pushkin/">Колпино</a></li>
+        <li><a href="/cities/pushkin/">Колпинский</a></li>
+        <li>Красногвардейский</li>
+        <li><a href="/cities/petergof/">Красное Село</a></li>
+        <li>Красносельский</li>
+        <li>Кронштадтский</li>
+        <li><a href="/cities/sestroretsk/">Курортный</a></li>
+        <li><a href="/cities/kudrovo/">Кудрово</a></li>
+        <li><a href="/cities/petergof/"><strong>Л</strong>омоносов</a></li>
+    </ul>
+    <ul>
+        <li>Луга</li>
+        <li><strong>М</strong>осковский</li>
+        <li><a href="/cities/murino/">Мурино</a></li>
+        <li><strong>Н</strong>евский</li>
+        <li><a href="/cities/novaya-ochta/">Новая Охта</a></li>
+        <li><a href="/cities/parnas/"><strong>П</strong>арголово</a></li>
+        <li><a href="/cities/parnas/">Парнас</a></li>
+        <li><a href="/cities/petergof/">Петергоф</a></li>
+        <li>Петроградский</li>
+        <li>Петродворцовый</li>
+
+    </ul>
+    <ul>
+        <li>Приморский</li>
+        <li><a href="/cities/pushkin/">Пушкин</a></li>
+        <li>Пушкинский</li>
+        <li><a href="/cities/sertolovo/"><strong>С</strong>ертолово</a></li>
+        <li><a href="/cities/sestroretsk/">Сестрорецк</a></li>
+        <li><a href="/cities/petergof/">Стрельна</a></li>
+        <li><strong>Т</strong>осно</li>
+        <li><strong>Ф</strong>рунзенский</li>
+        <li><strong>Ц</strong>ентральный</li>
+        <li><strong>Ш</strong>ушары</li>
+    </ul>
+</div>
+<hr>
+<p>Мастер всегда производит вскрытие замка быстро и профессионально, не  отвлекаясь на посторонние факторы. В случае если Вы спешите и  попытаетесь открыть авто самостоятельно, Вы можете нанести ущерб дорогостоящей частям машины Иногда происходят ситуации, когда ребенок закрывается внутри машины и не может ее открыть. В такой ситуации необходима быстрая и правильная оценка ситуации, чтобы избежать тяжелых последствий. Наши специалисты  выполняют свою работу быстро и сделают всё точно в срок. После вскрытия авто Вы  сможете сесть в автомобиль и сразу поехать.</p>
+<div class="docs_warn inlineprop">
+<h4>Во избежание недоразумений необходимо предъявить мастеру документы на собственность, прописку, договор аренды или иные документы.</h4>
+<h4>Конечно эти бумаги могут находится за закрытой дверью, в такой ситуации гарантией безопасности станет подтверждение соседей или вызов участкового из местного отделения полиции.</h4>
+</div>
+<hr>
+<p>Большой опыт нашей компании позволил нашим специалистам по вскрытию замков найти подход к любому замку автомобиля. Мы можем произвести аккуратное и быстрое вскрытие замка любой марки. Никаких разбитых стекол, царапин или повреждений лкп. Вскрытие автомобиля – дело обычно срочное. Позвоните в нашу организацию, и мастер произведет аварийное вскрытие за минуты и откроет заклинивший механизм.</p>
+<blockquote>
+<p>Советы, чтобы избежать неожиданной блокировки дверей автомобиля</p>
+<ul>
+<li>Следите за зарядом аккумулятора</li>
+<li>Не забывайте и не закрывайте в салоне ключи</li>
+<li>Следите за состоянием замков и ключей</li>
+<li>Не оставляйте в салоне без присмотра маленьких детей или животных</li>
+<li>Имейте всегда комплект запасных ключей. Если их нет совсем, то позаботьтесь об их изготовлении заранее</li>
+<li>Устанавливайте качественные сигнализации у проверенных установщиков и профильных сервисах</li>
+</ul>
+</blockquote>
+<p>Если все таки произошла блокировка дверей то не пытайтесь самостоятельно их открыть. Если у вас нет опыта вы можете усугубить ситуацию и заблокировать авто еще серьезнее или сломать замок. Обращайтесь к нам. Мы вскроем машину без повреждений.</p>
+<h3 id="вскрыть-автомобиль-в-санкт-петербурге-или-ленинградской-области-можно-вызвав-мастера-по-телефону-71609211609401605016094">Вскрыть автомобиль в Санкт-Петербурге или Ленинградской области можно вызвав мастера по телефону +7 (921) 940 50 94</h3>
+<div class="locks inlineprop">
+    <h2>Типы вскрываемых замков</h2>
+    <p>Производим аварийное вскрытие всех видов замков, в том числе:</p>
+    <ul>
+        <li><strong>Б</strong>локираторов КПП</li>
+        <li><a href="/tipy-zamkov#дисковый"><strong>Д</strong>исковый</a></li>
+        <li><strong>К</strong>апота и багажника</li>
+        <li>Квартирные</li>
+        <li>Китайские</li>
+        <li><a href="/tipy-zamkov#кодовый">Кодовый</a></li>
+        <li>Крестовые</li>
+    </ul>
+    <ul>
+        <li><strong>Л</strong>имбовые</li>
+        <li><strong>М</strong>агнитные</li>
+        <li><strong>Н</strong>авесные</li>
+        <li>Накладные</li>
+        <li><strong>О</strong>течественные</li>
+        <li><strong>П</strong>очтовые</li>
+        <li><a href="/tipy-zamkov#реечный"><strong>Р</strong>еечные</a></li>
+    </ul>
+    <ul>
+        <li>Ригельные</li>
+        <li>Роторные</li>
+        <li>Российские</li>
+        <li>Рулевой колонки</li>
+        <li><a href="/tipy-zamkov#сувальдный"><strong>С</strong>увальдные</a></li>
+        <li><a href="/tipy-zamkov#цилиндровый"><strong>Ц</strong>илиндровые</a></li>
+        <li><a href="/tipy-zamkov#электронный"><strong>Э</strong>лектронный</a></li>
+    </ul>
+</div>
+<hr>
+<p>Самостоятельно проникнуть внутрь транспортного средства обычно не  представляется возможным. Поэтому только специалист, обладающий  соответствующей компетенцией, квалификацией и опытом, может вернуть доступ в транспортное средство без лишних  затруднений. Важно лишь не откладывать дело в долгий ящик, максимально  быстро сообщить о происшествии и заказать услуги профильных сотрудников</p>
+<h3 id="когда-необходимо-открыть-машину-при-потере-ключей-или-если-они-заперты-внутри-авто-вызовите-мастера-по-телефону-71609211609401605016094">Когда необходимо открыть машину при потере ключей или если они заперты внутри авто вызовите мастера по телефону +7 (921) 940 50 94</h3>
+
           
         </div>
         <a class="button button-primary mb-2" href="/">
@@ -343,7 +655,7 @@
   
 
   
-  <script type="text/javascript" src="/js/scripts.min.5189e9407ddeb871534750756100ec4045d704e879504ec03bfa5734f51afe30.js"></script>
+  <script type="text/javascript" src="/js/scripts.min.js"></script>
   
 
   

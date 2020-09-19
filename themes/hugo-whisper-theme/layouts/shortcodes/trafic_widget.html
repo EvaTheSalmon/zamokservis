@@ -9,5 +9,11 @@
     <div class="traffic-light-text-bottom">Это может повлиять на время прибытия мастера на место для оказания помощи</div>
 </div>
 <hr>
+{{$scripts := resources.Get "js/trafic_widget.js"}}
+
+{{ if .Site.IsServer }}
+<script type="text/javascript" src="{{ ($scripts).RelPermalink }}"></script>
+{{ else }}
+<script type="text/javascript" src="{{ ($scripts | babel | minify ).RelPermalink }}" defer></script>
+{{ end }}
 <!--<script src="/js/trafic_widget.js" defer></script>-->
-{{ $scripts := print $scripts (resources.Get "js/trafic_widget.js") }}

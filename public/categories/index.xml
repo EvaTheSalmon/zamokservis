@@ -5,10 +5,6 @@
     <link>https://zamokservis.com/categories/</link>
     <description>Recent content in Categories on Энигма | Вскрытие замков</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ru-ru</language>
-    
-	<atom:link href="https://zamokservis.com/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>ru-ru</language><atom:link href="https://zamokservis.com/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

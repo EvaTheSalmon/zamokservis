@@ -1,6 +1,6 @@
 RewriteEngine On
-#Cache
 <ifModule mod_headers.c>
+    # Cache
     <FilesMatch "\.(mp4|webm)$">
         Header set Cache-Control "max-age=31557600"
     </FilesMatch>
@@ -9,13 +9,21 @@ RewriteEngine On
     </FilesMatch>
     <FilesMatch "\.(js|css|txt)$">
         Header set Cache-Control "max-age=31557600"
-    </FilesMatch>    
+    </FilesMatch>
+    # XXS-Protection
+    Header set X-XSS-Protection "1; mode=block"
+    # Referrer Policy
+    Header always set Referrer-Policy "no-referrer-when-downgrade"
+    # X-Frame-Protection
+    Header set X-Frame-Options "DENY"
+    # CSP
+    Header set Content-Security-Policy "default-src https:"
 </IfModule>
 
 # AddEncoding allows you to have certain browsers uncompress information on the fly.
 AddEncoding gzip .gz
 
-#Serve gzip compressed CSS files if they exist and the client accepts gzip.
+# Serve gzip compressed CSS files if they exist and the client accepts gzip.
 RewriteCond %{HTTP:Accept-encoding} gzip
 RewriteCond %{REQUEST_FILENAME}\.gz -s
 RewriteRule ^(.*)\.css $1\.css\.gz [QSA]

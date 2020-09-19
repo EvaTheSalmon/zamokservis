@@ -44,6 +44,13 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js" type="application/javascript" defer></script>
+{{$scripts := resources.Get "js/hidebut.js"}}
+
+{{ if .Site.IsServer }}
+<script type="text/javascript" src="{{ ($scripts).RelPermalink }}"></script>
+{{ else }}
+<script type="text/javascript" src="{{ ($scripts | babel | minify ).RelPermalink }}" defer></script>
+{{ end }}
 <!--<script type="text/javascript" src="/js/hidebut.js" defer></script>-->
-{{ $scripts := print $scripts (resources.Get "js/hidebut.js") }}
+
 <hr>

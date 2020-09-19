@@ -30,5 +30,6 @@ module.exports = {
             ['default', { discardComments: true }]
         }
     },
-    sourceMap: true
+    sourceMap: true,
+
 }
