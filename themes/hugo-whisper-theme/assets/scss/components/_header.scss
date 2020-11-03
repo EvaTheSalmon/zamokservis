@@ -4,18 +4,69 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  //position: fixed;
+  width: 100%;
+  z-index: 2;
+
+  @include media-breakpoint-up(md){
+    .phone-section{visibility: hidden}
+  }
+
   padding: 10px 0 10px 0;
-  // box-shadow: 0 1px 15px rgba(50, 50, 93, 0.2);
+  //box-shadow: 0 1px 15px rgba(50, 50, 93, 0.2);
   .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+
+
+    .sign, .top_pic {
+      display: inline-block;
+
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 0 5px 0 5px;
+
+      vertical-align: middle;
+    }
+
+
+    .top_text {
+      width: 100%;
+      margin: 0 0 1rem;
+
+      color: white;
+    }
+
+    .top_text > span {
+      text-align: center;
+
+      color: white;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+      font-size: 2.5rem;
+    }
+
+    .top_pic {
+      width: 28px;
+      height: 28px;
+
+      vertical-align: middle;
+
+      background-image:  url('/img/247.png');
+      background-position-x: center;
+      background-position-y: center;
+      background-size: contain;
+    }
+
   }
   &.header-absolute {
     position: absolute;
     z-index: 10;
     width: 100%;
   }
+
 }
 .lock-scroll {
   .header {

@@ -77,14 +77,20 @@
 
 <body class='page {{ block "body_classes" . }}{{ end }}'>
 
-  <div class=top_bar>
-    <div class=top_pic></div>
-    <div class=sign><a href=tel:+79219405094 class=phone_link title=Телефон>
-      <span class=phone>+7 (921) 940 50 94</span>
-    </a></div>
-  </div>
+<div class="top_bar">
+  <div class='header'>
+    <div class="container">
 
-  {{ partial "main-menu-mobile.html" . }}
+        <div class=top_pic></div>
+        <div class=sign>
+          <a href=tel:+79219405094 class=phone_link title=Телефон>
+            <span class=phone>+7 (921) 940 50 94</span>
+          </a></div>
+
+    </div>
+  </div>
+</div>
+{{ partial "main-menu-mobile.html" . }}
   <div class="wrapper">
     {{ partial "header.html" . }}
 

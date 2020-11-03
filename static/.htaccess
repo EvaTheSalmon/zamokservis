@@ -17,7 +17,7 @@ RewriteEngine On
     # X-Frame-Protection
     Header set X-Frame-Options "DENY"
     # CSP
-    Header set Content-Security-Policy "default-src https:"
+    # Header set Content-Security-Policy "default-src https:"
 </IfModule>
 
 # AddEncoding allows you to have certain browsers uncompress information on the fly.
