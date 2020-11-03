@@ -1,5 +1,0 @@
-User-agent: *
-Crawl-delay: 1
-Host: zamokservis.com
-Sitemap: https://zamokservis.com/sitemap.xml
-Sitemap: https://zamokservis.com/blog/sitemap.xml

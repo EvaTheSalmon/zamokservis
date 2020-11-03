@@ -8469,6 +8469,19 @@ hr {
   box-sizing: border-box;
   vertical-align: middle; }
 
+button {
+  margin: 20px 10px 20px 10px;
+  text-align: center;
+  font-weight: 500;
+  padding: 12px 20px 12px 20px;
+  background: #5ad67d;
+  border-radius: 3px;
+  border-color: #5ad67d;
+  color: #fff;
+  font-size: 90%;
+  outline: none;
+  text-decoration: none; }
+
 .regions ul {
   box-sizing: border-box;
   width: 25%;

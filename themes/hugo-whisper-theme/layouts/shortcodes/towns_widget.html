@@ -2,7 +2,7 @@
 
     <div class="blog-card map-widget">
         <div class="meta">
-            <div class="photo" style="width:480px; height:344px;">
+            <div class="photo">
                 <picture>
                     <source srcset=/img/src/map.webp type=image/webp>
                     <img src=/img/src/map.jpg />
@@ -19,6 +19,8 @@
         </div>
     </div>
 
+    <button class="btn">Развернуть</button>
+    <div id="list">
     <ul>
         <li><strong>А</strong>галатово</li>
         <li>Адмиралтейский</li>
@@ -157,11 +159,8 @@
         <li><strong>Р</strong>азбегаево</li>
         <li>Раздолье</li>
         <li>Разметелево</li>
-
     </ul>
     <ul>
-
-        <li>Рахья</li>
         <li>Рождествено</li>
         <li>Романовка</li>
         <li><a href="/cities/rochina/">Рощино</a></li>
@@ -206,7 +205,36 @@
         <li><strong>Щ</strong>еглово</li>
         <li><strong>Ю</strong>кки</li>
         <li><strong>Я</strong>льгелево</li>
-        <li>Янино-1</li>
+
     </ul>
+    </div>
 </div>
 <hr>
+<script type="text/javascript">
+    var toggle = (function () {
+        var visible = false,
+            ele = document.getElementById('list'),
+            btn = document.querySelector('.btn');
+
+        function flip () {
+            var display = ele.style.display;
+
+            ele.style.display = (display === 'block' ? 'none' : 'block');
+            visible = !visible;
+        }
+
+        btn.addEventListener('click', flip);
+
+        ele.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+
+        document.addEventListener('click', function (e) {
+            if (visible && e.target !== btn) flip();
+        });
+
+        ele.style.display = 'none';
+
+        return flip;
+    }());
+</script>

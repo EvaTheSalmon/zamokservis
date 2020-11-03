@@ -16,6 +16,20 @@
   vertical-align: middle;
 }
 
+button{
+  margin: 20px 10px 20px 10px;
+  text-align: center;
+  font-weight: 500;
+  padding: 12px 20px 12px 20px;
+  background: $secondary;
+  border-radius: 3px;
+  border-color: $secondary;
+  color: #fff;
+  font-size: 90%;
+  outline: none;
+  text-decoration: none;
+}
+
 .regions ul {
   box-sizing: border-box;
   width: 25%;
