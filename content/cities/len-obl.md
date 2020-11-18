@@ -1,5 +1,5 @@
 ---
-title: "Энигма | Вскрытие замков в Санкт-Петербурге"
+title: "Вскрытие замков в Ленинградской области"
 date: 2020-03-13T00:41:30+03:00
 draft: true
 type: usual
@@ -15,7 +15,7 @@ type: usual
 
 {{< trafic_widget >}}
 
-{{< towns_widget_sm >}}
+{{< towns_widget >}}
 
 {{< document_warning >}}
 

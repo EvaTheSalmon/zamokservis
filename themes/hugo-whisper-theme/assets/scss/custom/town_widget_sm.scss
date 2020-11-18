@@ -15,16 +15,7 @@
   box-sizing: border-box;
   vertical-align: middle;
 
-  .town_list {
-    max-height: 500px;
-    overflow-y: scroll;
-    box-shadow: 0px 5px 5px -5px #000,
-    0px -5px 5px -5px #000;
 
-    @include media-breakpoint-up(md) {
-      margin-top: 40px;
-      box-shadow: none;
-    }
 
     ul {
       box-sizing: border-box;
@@ -70,5 +61,5 @@
     }
   }
 
-}
+
 

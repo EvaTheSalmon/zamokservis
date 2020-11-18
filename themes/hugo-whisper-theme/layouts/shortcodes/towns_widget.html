@@ -2,25 +2,20 @@
 
     <div class="blog-card map-widget">
         <div class="meta">
-            <div class="photo">
-                <picture>
-                    <source srcset=/img/src/map.webp type=image/webp>
-                    <img src=/img/src/map.jpg />
-                </picture>
-            </div>
+            <div class="photo" style="background-image: url(/img/src/map.jpg)"></div>
             <ul class="details">
-                <p>Осуществляем вскрытие по Ленинградской области и Санкт-Петербургу</p>
+                <p>Осущесвляем вскрытие по Ленинградской области и Санкт-Петербургу</p>
             </ul>
         </div>
         <div class="description">
             <h1>Районы, в которых мы работаем</h1>
             <h2>Оказание услуг по всей области</h2>
-            <p>Наша служба оказывает услуги по вскрытию дверей и замене замков во всех районах Санкт-Петербурга и большинстве городов Ленинградской области, в том числе:</p>
+            <p>Наша служба оказывает услуги по вскрытию дверей и замене замков во всех районах Санкт-Петербурга и большинстве городов <a href="/cities/len-obl/">Ленинградской области</a>, в том числе:</p>
         </div>
     </div>
 
-    <button class="btn">Развернуть</button>
-    <div id="list">
+
+    <div class="town_list">
     <ul>
         <li><strong>А</strong>галатово</li>
         <li>Адмиралтейский</li>
@@ -82,7 +77,7 @@
         <li>Кипень</li>
         <li><a href="/cities/kirovsk/">Кировск</a></li>
         <li>Кисельня</li>
-        <li><a href="/cities/kolpino/">Колпино</a>></li>
+        <li><a href="/cities/kolpino/">Колпино</a></li>
         <li>Колпинский</li>
         <li>Колчаново</li>
         <li>Коммунары</li>
@@ -168,7 +163,6 @@
         <li>Рябово</li>
         <li><strong>С</strong>апёрное</li>
         <li>Сельцо</li>
-        <li>Сельцо</li>
         <li>Семиозерье</li>
         <li>Семрино</li>
         <li><a href="/cities/sertolovo/">Сертолово</a></li>
@@ -205,36 +199,8 @@
         <li><strong>Щ</strong>еглово</li>
         <li><strong>Ю</strong>кки</li>
         <li><strong>Я</strong>льгелево</li>
-
+        <li>И другие</li>
     </ul>
     </div>
 </div>
 <hr>
-<script type="text/javascript">
-    var toggle = (function () {
-        var visible = false,
-            ele = document.getElementById('list'),
-            btn = document.querySelector('.btn');
-
-        function flip () {
-            var display = ele.style.display;
-
-            ele.style.display = (display === 'block' ? 'none' : 'block');
-            visible = !visible;
-        }
-
-        btn.addEventListener('click', flip);
-
-        ele.addEventListener('click', function (e) {
-            e.stopPropagation();
-        });
-
-        document.addEventListener('click', function (e) {
-            if (visible && e.target !== btn) flip();
-        });
-
-        ele.style.display = 'none';
-
-        return flip;
-    }());
-</script>

@@ -14,6 +14,6 @@
 {{ if .Site.IsServer }}
 <script type="text/javascript" src="{{ ($scripts).RelPermalink }}"></script>
 {{ else }}
-<script type="text/javascript" src="{{ ($scripts | babel | minify ).RelPermalink }}" defer></script>
+<script type="text/javascript" src="{{ ($scripts | babel | minify | resources.Fingerprint).RelPermalink }}" integrity="{{ $scripts.Data.Integrity }}" defer></script>
 {{ end }}
 <!--<script src="/js/trafic_widget.js" defer></script>-->

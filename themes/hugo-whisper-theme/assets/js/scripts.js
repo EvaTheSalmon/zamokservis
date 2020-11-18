@@ -34,3 +34,29 @@ function addHeaderAnchors(content) {
     }
 }
 document.getElementsByClassName("top_bar")[0].style.opacity=0;document.getElementsByClassName("top_bar")[0].style.display="none";window.onscroll=function(){if(window.scrollY>60){document.getElementsByClassName("top_bar")[0].style.opacity=1;document.getElementsByClassName("top_bar")[0].style.display="block";document.getElementsByClassName("top_bar")[0].style.pointerEvents="auto";}else{document.getElementsByClassName("top_bar")[0].style.opacity=0;document.getElementsByClassName("top_bar")[0].style.display="none";document.getElementsByClassName("top_bar")[0].style.pointerEvents="none";}};
+var toggle = (function () {
+    var visible = false,
+        ele = document.getElementById('list'),
+        btn = document.querySelector('.btn');
+
+    function flip () {
+        var display = ele.style.display;
+
+        ele.style.display = (display === 'block' ? 'none' : 'block');
+        visible = !visible;
+    }
+
+    btn.addEventListener('click', flip);
+
+    ele.addEventListener('click', function (e) {
+        e.stopPropagation();
+    });
+
+    document.addEventListener('click', function (e) {
+        if (visible && e.target !== btn) flip();
+    });
+
+    ele.style.display = 'none';
+
+    return flip;
+}());

@@ -1,6 +1,6 @@
 RewriteEngine On
+# ------------------------ Cache ------------------------
 <ifModule mod_headers.c>
-    # Cache
     <FilesMatch "\.(mp4|webm)$">
         Header set Cache-Control "max-age=31557600"
     </FilesMatch>
@@ -10,33 +10,40 @@ RewriteEngine On
     <FilesMatch "\.(js|css|txt)$">
         Header set Cache-Control "max-age=31557600"
     </FilesMatch>
-    # XXS-Protection
-    Header set X-XSS-Protection "1; mode=block"
-    # Referrer Policy
-    Header always set Referrer-Policy "no-referrer-when-downgrade"
-    # X-Frame-Protection
-    Header set X-Frame-Options "DENY"
-    # CSP
-    # Header set Content-Security-Policy "default-src https:"
 </IfModule>
 
-# AddEncoding allows you to have certain browsers uncompress information on the fly.
-AddEncoding gzip .gz
+# ------------------------ WebP ------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
 
-# Serve gzip compressed CSS files if they exist and the client accepts gzip.
-RewriteCond %{HTTP:Accept-encoding} gzip
-RewriteCond %{REQUEST_FILENAME}\.gz -s
-RewriteRule ^(.*)\.css $1\.css\.gz [QSA]
+  # Check if browser supports WebP images
+  RewriteCond %{HTTP_ACCEPT} image/webp
 
-# Serve gzip compressed JS files if they exist and the client accepts gzip.
-RewriteCond %{HTTP:Accept-encoding} gzip
-RewriteCond %{REQUEST_FILENAME}\.gz -s
-RewriteRule ^(.*)\.js $1\.js\.gz [QSA]
+  # Check if WebP replacement image exists
+  RewriteCond %{DOCUMENT_ROOT}/$1.webp -f
 
-# Serve correct content types, and prevent mod_deflate double gzip.
-RewriteRule \.css\.gz$ - [T=text/css,E=no-gzip:1]
-RewriteRule \.js\.gz$ - [T=text/javascript,E=no-gzip:1]
+  # Serve WebP image instead
+  RewriteRule (.+)\.(jpe?g|png)$ $1.webp [T=image/webp,E=REQUEST_image]
+</IfModule>
 
+<IfModule mod_headers.c>
+  # Vary: Accept for all the requests to jpeg and png
+  Header append Vary Accept env=REQUEST_image
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+</IfModule>
+
+# ------------------------ Protection ------------------------
+<IfModule mod_headers.c>
+	Header set X-XSS-Protection "1; mode=block"
+	Header always set Referrer-Policy "no-referrer-when-downgrade"
+	#Header set X-Frame-Options "DENY"
+	#Header set Content-Security-Policy "default-src https:; script-src 'self' ajax.cloudflare.com;"
+</IfModule>
+
+# ------------------------ Redirects ------------------------
 Redirect 301 /pages/install.html /ustanovka-zamkov
 Redirect 301 /pages/safe.html /vskrytie-sejfov
 Redirect 301 /pages/cars.html /vskrytie-avtomobilej

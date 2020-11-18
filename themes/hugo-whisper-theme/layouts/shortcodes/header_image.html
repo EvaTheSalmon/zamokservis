@@ -1,22 +1,11 @@
 <picture class="header_image_box">
-    <source srcset=/img/src320/{{.Get `name`}}.jpg media="(max-width: 320px)">
-    <source srcset=/img/src320/{{.Get `name`}}.webp media="(max-width: 320px)">
-
-    <source srcset=/img/src360/{{.Get `name`}}.jpg media="(max-width: 360px)">
-    <source srcset=/img/src360/{{.Get `name`}}.webp media="(max-width: 360px)">
-
-    <source srcset=/img/src375/{{.Get `name`}}.jpg media="(max-width: 375px)">
-    <source srcset=/img/src375/{{.Get `name`}}.webp media="(max-width: 375px)">
-
-    <source srcset=/img/src414/{{.Get `name`}}.jpg media="(max-width: 414px)">
-    <source srcset=/img/src414/{{.Get `name`}}.webp media="(max-width: 414px)">
-
-    <source srcset=/img/src720/{{.Get `name`}}.jpg media="(max-width: 648px)">
-    <source srcset=/img/src720/{{.Get `name`}}.webp media="(max-width: 648px)">
-
-    <source srcset=/img/src1080/{{.Get `name`}}.jpg media="(max-width: 972px)">
-    <source srcset=/img/src1080/{{.Get `name`}}.webp media="(max-width: 972px)">
+    <source srcset=/img/src320/{{.Get `name`}}.jpg media="(min-width: 320px)">
+    <source srcset=/img/src360/{{.Get `name`}}.jpg media="(min-width: 360px)">
+    <source srcset=/img/src375/{{.Get `name`}}.jpg media="(min-width: 375px)">
+    <source srcset=/img/src414/{{.Get `name`}}.jpg media="(min-width: 414px)">
+    <source srcset=/img/src720/{{.Get `name`}}.jpg media="(min-width: 648px)">
+    <source srcset=/img/src1080/{{.Get `name`}}.jpg media="(min-width: 972px)">
     <div class="cover">
-    <img class=img_block src=/img/src/{{.Get `name`}}.jpg alt="Вскрытие замков" />
+        <img class=img_block src=/img/src/{{.Get `name`}}.jpg alt="Вскрытие замков" />
     </div>
 </picture>
