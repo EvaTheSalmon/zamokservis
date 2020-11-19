@@ -1,6 +1,8 @@
 module.exports = {
     plugins: {
-        'postcss-discard-comments':{},
+        'postcss-discard-comments':{
+            removeAll: true
+        },
         'postcss-preset-env':{
             /* use stage 3 features + css nesting rules */
             stage: 3,
@@ -21,13 +23,14 @@ module.exports = {
                 './layouts/**/*.html',
                 './static/js/*.js',
                 './layouts/shortcodes/*.html'
-            ]
+            ],
+            safelist: ['blockquote']
         },
         'autoprefixer':{
             browsers:'last 4 version'
         },
         'cssnano':{preset:
-            ['default', { discardComments: true }]
+                ['default', { discardComments: true }]
         }
     },
     sourceMap: true,
