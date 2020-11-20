@@ -40,14 +40,12 @@
   <meta name="msapplication-config" content="/ico/browserconfig.xml">
   <meta name="theme-color" content="#eef2f5">
 
-  {{$urlCSS:= print "themes/hugo-whisper-theme/assets/scss/pages/" $file_name ".scss"  }}
-
   {{- if .Site.IsServer -}}
-      {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" (print "css/" $file_name ".css") "enableSourceMap" false)}}
+      {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" (print "css/main.css") "enableSourceMap" false)}}
       <link rel=preload as=style href="{{ ($style).RelPermalink }}">
       <link rel="stylesheet" type=text/css href="{{ ($style).RelPermalink }}">
   {{ else }}
-      {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" (print "css/" $file_name ".css") "enableSourceMap" false) | resources.PostCSS | minify | resources.Fingerprint}}
+      {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" (print "css/main.css") "enableSourceMap" false) | resources.PostCSS | minify | resources.Fingerprint}}
       <link rel=preload as=style href="{{ ($style).RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
       <link rel="stylesheet" type=text/css href="{{ ($style).RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
   {{ end }}

@@ -15,20 +15,13 @@ module.exports = {
         'postcss-short':{},
         'postcss-color-short':{},
         'postcss-size':{},
-        '@fullhuman/postcss-purgecss':{
-            content: [
-                './themes/hugo-whisper-theme/layouts/**/*.html',
-                './themes/hugo-whisper-theme/assets/js/*.js',
-                './themes/hugo-whisper-theme/static/js/*.js',
-                './layouts/**/*.html',
-                './static/js/*.js',
-                './layouts/shortcodes/*.html'
-            ],
-            safelist: ['blockquote']
-        },
         'autoprefixer':{
-            browsers:'last 4 version'
+            overrideBrowserslist:'last 4 version'
         },
+        '@fullhuman/postcss-purgecss':{
+            content: ['./themes/hugo-whisper-theme/layouts/**/*.html','./themes/hugo-whisper-theme/assets/js/**/*.js'],
+            safelist: ['blockquote']
+            },
         'cssnano':{preset:
                 ['default', { discardComments: true }]
         }

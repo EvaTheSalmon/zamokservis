@@ -1,8 +1,9 @@
+
 var body = document.querySelector('body')
 var menuTrigger = document.querySelector('#toggle-main-menu-mobile');
 var menuContainer = document.querySelector('#main-menu-mobile');
 
-menuTrigger.onclick = function() {
+menuTrigger.onclick = function () {
     menuContainer.classList.toggle('open');
     menuTrigger.classList.toggle('is-active')
     body.classList.toggle('lock-scroll')
@@ -33,4 +34,17 @@ function addHeaderAnchors(content) {
         }
     }
 }
-document.getElementsByClassName("top_bar")[0].style.opacity=0;document.getElementsByClassName("top_bar")[0].style.display="none";window.onscroll=function(){if(window.scrollY>60){document.getElementsByClassName("top_bar")[0].style.opacity=1;document.getElementsByClassName("top_bar")[0].style.display="block";document.getElementsByClassName("top_bar")[0].style.pointerEvents="auto";}else{document.getElementsByClassName("top_bar")[0].style.opacity=0;document.getElementsByClassName("top_bar")[0].style.display="none";document.getElementsByClassName("top_bar")[0].style.pointerEvents="none";}};
+
+document.getElementsByClassName("top_bar")[0].style.opacity = 0;
+document.getElementsByClassName("top_bar")[0].style.display = "none";
+window.onscroll = function () {
+    if (window.scrollY > 60) {
+        document.getElementsByClassName("top_bar")[0].style.opacity = 1;
+        document.getElementsByClassName("top_bar")[0].style.display = "block";
+        document.getElementsByClassName("top_bar")[0].style.pointerEvents = "auto";
+    } else {
+        document.getElementsByClassName("top_bar")[0].style.opacity = 0;
+        document.getElementsByClassName("top_bar")[0].style.display = "none";
+        document.getElementsByClassName("top_bar")[0].style.pointerEvents = "none";
+    }
+};

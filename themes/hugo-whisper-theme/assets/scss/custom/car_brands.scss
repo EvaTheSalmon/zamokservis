@@ -1,9 +1,9 @@
-.brands {
+.car_brands {
   width: 90%;
   margin: 20px auto 60px auto;
   text-align: center;
 
-  div > a > div{
+  div a div{
   box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
   display: inline-block;
   font-size: 1.3rem;
@@ -24,19 +24,19 @@
     color: #000;
     display: block;
   }
-}
-.hidebut{
-  margin-top: 25px;
-  background-color:transparent;
-  border: 1px solid #adabaa;
-  border-color: #adabaa #e3dedb #e3dedb #adabaa;
-  color: black;
-  padding: 10px 30px;
-  text-align: center;
-  text-decoration: none;
-  display: none;
-  font-size: 16px;
-  @include media-breakpoint-down(sm){
-    display: inline-block;
+  .hidebut{
+    margin: 25px 0 25px;
+    background-color:transparent;
+    border: 1px solid #adabaa;
+    border-color: #adabaa #e3dedb #e3dedb #adabaa;
+    color: black;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: none;
+    font-size: 16px;
+    @include media-breakpoint-down(md){
+      display: inline-block;
+    }
   }
 }

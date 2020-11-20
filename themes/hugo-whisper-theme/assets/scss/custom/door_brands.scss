@@ -21,7 +21,7 @@
     color: #000;
   }
   .hidebut{
-    margin-top: 25px;
+    margin: 25px 0 25px;
     background-color:transparent;
     border: 1px solid #adabaa;
     border-color: #adabaa #e3dedb #e3dedb #adabaa;
@@ -31,6 +31,9 @@
     text-decoration: none;
     display: none;
     font-size: 16px;
+    @include media-breakpoint-down(md){
+      display: inline-block;
+    }
   }
   span{
     display: block;

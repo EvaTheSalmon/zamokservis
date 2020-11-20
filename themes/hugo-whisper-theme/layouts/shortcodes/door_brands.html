@@ -1,6 +1,6 @@
 <div class=brands>
-    <h2>Работаем с любыми брэндами дверей</h2><button class=hidebut value="collapse">Скрыть</button>
-    <div class=divhide>
+    <h2>Работаем с любыми брэндами дверей</h2><button id="buttonHide" class=hidebut value="collapse" onclick="colapse()">Скрыть</button>
+    <div class=divhide id=divhide>
         <a href=/vskrytie-dvery/kondor><div class=brand_pannel><img src=/img/door_brands/kondor.jpg alt=Kondor /><span>Kondor</span></div></a>
         <a href=/vskrytie-dvery/valberg><div class=brand_pannel><img src=/img/door_brands/valberg.jpg alt=Valberg /><span>Valberg</span></div></a>
         <a href=/vskrytie-dvery/garda><div class=brand_pannel><img src=/img/door_brands/garda.jpg alt=Garda /><span>Garda</span></div></a>
@@ -19,8 +19,6 @@
         <a href=/vskrytie-dvery/argus><div class=brand_pannel><img src=/img/door_brands/argus.jpg alt=Argus /><span>Argus</span></div></a>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js" type="application/javascript" defer></script>
-
 {{$scripts := resources.Get "js/hidebut.js"}}
 
 {{ if .Site.IsServer }}

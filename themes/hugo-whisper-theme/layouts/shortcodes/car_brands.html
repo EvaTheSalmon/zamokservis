@@ -1,7 +1,7 @@
-<div class=brands>
+<div class=car_brands>
     <h2>Работаем с любыми брэндами автомобилей</h2>
-    <button class=hidebut value="collapse">Скрыть</button>
-    <div class=divhide>
+    <button class=hidebut id="buttonHide" onclick="colapse()">Скрыть</button>
+    <div class=divhide id=divhide>
         <a href=/vskrytie-auto/honda><div class=brand_pannel><img src=/img/car_brands/honda.jpg alt=Honda /><span>Honda</span></div></a>
         <a href=/vskrytie-auto/ford><div class=brand_pannel><img src=/img/car_brands/ford.jpg alt=Ford /><span>Ford</span></div></a>
         <a href=/vskrytie-auto/mazda><div class=brand_pannel><img src=/img/car_brands/mazda.jpg alt=Mazda /><span>Mazda</span></div></a>
@@ -43,7 +43,6 @@
         <a href=/vskrytie-auto/opel><div class=brand_pannel><img src=/img/car_brands/opel.jpg alt=Opel /><span>Opel</span></div></a>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js" type="application/javascript" defer></script>
 {{$scripts := resources.Get "js/hidebut.js"}}
 
 {{ if .Site.IsServer }}
