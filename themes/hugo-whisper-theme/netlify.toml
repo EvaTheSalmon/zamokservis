@@ -3,6 +3,6 @@
   command = "cd zamokservis && hugo --gc --themesDir ../.."
 
 [build.environment]
-  HUGO_VERSION = "0.78.2"
+  HUGO_VERSION = "0.79"
   HUGO_THEME = "repo"
   HUGO_BASEURL = "/"

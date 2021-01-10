@@ -44,6 +44,8 @@ summaryLength = 30
 
 [params]
   google_analytics_id="UA-117164428-1"
+  yandex_analytics_id="49487923"
+  cloudflare_analytics_token="c194f945b0a5488085a197e722ae0769"
   homepage_button_link = '/'
   homepage_button_text = 'На главную'
   homepage_intro = 'Круглосуточное вскрытие и установка замков в Санкт-Петербурге и Ленинградской области. Вскрытие автомобилей. Вскрытие сейфов.'

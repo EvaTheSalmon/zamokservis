@@ -1,7 +1,7 @@
 ---
 title: "Вскрытие автомобилей в Санкт-Петербурге"
 date: 2020-03-29T00:36:38+03:00
-draft: true
+draft: false
 type: usual
 ---
 

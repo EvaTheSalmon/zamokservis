@@ -281,3 +281,8 @@ blockquote:before {
 blockquote p {
   display: inline;
 }
+
+::selection {
+  color: white;
+  background:$primary;
+}

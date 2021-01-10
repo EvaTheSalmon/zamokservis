@@ -1,7 +1,7 @@
 ---
 title: "Вскрытие замков в Парнасе"
 date: 2020-05-09T00:55:30+03:00
-draft: true
+draft: false
 show_sidebar: true
 ---
 

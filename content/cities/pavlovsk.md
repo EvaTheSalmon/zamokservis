@@ -1,7 +1,7 @@
 ---
 title: "Вскрытие замков в Павловске"
 date: 2020-11-03T00:55:30+03:00
-draft: true
+draft: false
 show_sidebar: true
 ---
 {{< price_selector >}}

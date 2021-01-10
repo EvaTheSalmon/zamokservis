@@ -1,7 +1,7 @@
 ---
 title: "Вскрытие замков в Ленинградской области"
 date: 2020-03-13T00:41:30+03:00
-draft: true
+draft: false
 type: usual
 ---
 

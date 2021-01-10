@@ -1,7 +1,7 @@
 ---
 title: "Вскрытие дверей в Санкт-Петербурге"
 date: 2020-03-29T00:35:47+03:00
-draft: true
+draft: false
 type: usual
 ---
 

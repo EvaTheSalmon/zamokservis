@@ -56,10 +56,12 @@ RewriteEngine On
 
 # ------------------------ Protection ------------------------
 <IfModule mod_headers.c>
+  Header unset X-Powered-By
+  Header set Permissions-Policy "microphone 'none';"
 	Header set X-XSS-Protection "1; mode=block"
-	Header always set Referrer-Policy "no-referrer-when-downgrade"
-	#Header set X-Frame-Options "DENY"
-	#Header set Content-Security-Policy "default-src https:; script-src 'self' ajax.cloudflare.com;"
+	Header always set Referrer-Policy "same-origin"
+	Header set X-Frame-Options "DENY"
+	Header set Content-Security-Policy "default-src https:; connect-src https:; font-src https: data:; frame-src https: twitter:; frame-ancestors https:; img-src https: data:; media-src https:; object-src https:; script-src 'unsafe-inline' 'unsafe-eval' https:; style-src 'unsafe-inline' https:;"
 </IfModule>
 
 # ------------------------ Redirects ------------------------
