@@ -1,0 +1,57 @@
+// Colors
+*{
+  --primary: #007864;
+  --secondary: #5ad67d;
+
+  --black: #212529;
+  --white: #fff;
+
+
+  --dark-bg: #2d2d2d;
+  --dark-primary: #09993e;
+  --dark-secondary: #725c82;
+
+  --light-bg: #fff;
+  --light-primary: #007864;
+  --light-secondary: #5ad67d;
+
+  @media (prefers-color-scheme: dark) {
+    :not(li):not(span):not(a):not(.button):not(.about_us):not(time):not(.brand_pannel){
+      background-color: var(--dark-bg) !important;
+      color: var(--white) !important;
+    }
+    .timeline>ul>li{
+      background-color: var(--dark-primary)
+    }
+    a, a:hover{
+      color: var(--white) !important;
+    }
+    ::before{
+      background-color: var(--dark-bg) !important;
+      border-color: transparent transparent transparent var(--dark-primary) !important;
+    }
+    .listing{
+      background-image: none!important;
+    }
+    .about_list .timeline ul *, time  {
+      background: var(--dark-primary)!important;
+      box-shadow: none!important;
+    }
+    .about_list .timeline ul li::after{
+      background: var(--dark-primary)!important;
+    }
+    .cover:after {
+      background: radial-gradient(rgba(255,255,255,0), var(--dark-bg) 70%)!important;
+    }
+    .brand_pannel{
+      background-color: var(--white) !important;
+        span{
+        background-color: var(--white) !important;
+        color: var(--black) !important;
+        }
+    }
+    .list-style-one>li{
+      color: var(--white)!important;
+    }
+  }
+}

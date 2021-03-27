@@ -21,7 +21,7 @@
   height: 50px
   }
   span {
-    color: #000;
+    color: var(--black);
     display: block;
   }
   .hidebut{
@@ -29,7 +29,7 @@
     background-color:transparent;
     border: 1px solid #adabaa;
     border-color: #adabaa #e3dedb #e3dedb #adabaa;
-    color: black;
+    color: var(--black);
     padding: 10px 30px;
     text-align: center;
     text-decoration: none;

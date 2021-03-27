@@ -48,7 +48,7 @@
   .timeline ul li:nth-child(odd) div::before {
     left: -15px;
     border-width: 8px 16px 8px 0;
-    border-color: transparent $secondary transparent transparent;
+    border-color: transparent var(--light-secondary) transparent transparent;
   }
 
   .timeline ul li:nth-child(even) div {
@@ -58,7 +58,7 @@
   .timeline ul li:nth-child(even) div::before {
     right: -15px;
     border-width: 8px 0 8px 16px;
-    border-color: transparent transparent transparent $secondary;
+    border-color: transparent transparent transparent var(--light-secondary);
   }
 
   time {
@@ -91,7 +91,7 @@
     .timeline ul li:nth-child(even) div::before {
       left: -15px;
       border-width: 8px 16px 8px 0;
-      border-color: transparent $secondary transparent transparent;
+      border-color: transparent var(--light-secondary) transparent transparent;
     }
   }
 }

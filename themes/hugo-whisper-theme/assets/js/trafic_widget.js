@@ -25,6 +25,5 @@ window.onload = function () {
     let hour = currentTime.getHours();
 
     bal.innerHTML = (traffic[day][0][hour]+1).toString();
-    document.getElementsByClassName("light")[0].style.backgroundColor = colorTL[traffic[day][0][hour]];
-
+    document.getElementsByClassName("light")[0].style.setProperty("background-color",colorTL[traffic[day][0][hour]],"important");
 }
