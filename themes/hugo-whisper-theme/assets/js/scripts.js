@@ -1,3 +1,32 @@
+// as soon as loaded - checking theme
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    //if dark theme preferred, set document with a `data-theme` attribute
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme","dark");
+} else if (localStorage.getItem("theme") == "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+}
+
+function change_theme(){
+    // Get current color
+    if(localStorage.getItem("theme") == "dark"){
+        var theme = "dark";
+    } else {
+        var theme = "light";
+    }
+
+    if (theme=="dark") {
+        // If current = dark then changing to light
+        document.documentElement.removeAttribute("data-theme", "dark");
+        var theme = "light";
+        localStorage.removeItem("theme","dark");
+    } else {
+        // If current = light then changing to dark
+        document.documentElement.setAttribute("data-theme", "dark");
+        var theme = "dark";
+        localStorage.setItem("theme","dark");
+    }
+}
 
 var body = document.querySelector('body')
 var menuTrigger = document.querySelector('#toggle-main-menu-mobile');

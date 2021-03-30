@@ -1,9 +1,14 @@
 .footer-area {
   background-color: #e7e8ed;
 
-a{
-  white-space:nowrap;
-}
+  a{
+    white-space:nowrap;
+    color: var(--primary);
+  }
+  a:hover{
+    color: var(--primary);
+    text-decoration: underline;
+  }
 
   ul {
     padding: 0;
@@ -22,7 +27,7 @@ a{
   }
 
   a:focus, a:hover {
-    text-decoration: none;
+
     -webkit-transition: .3s ease;
     -o-transition: .3s ease;
     transition: .3s ease
@@ -57,10 +62,6 @@ a{
     font-weight: 400;
     padding: 0;
     color: #363940
-  }
-
-  a {
-    color: #5867dd
   }
 
   .no-padding {
@@ -117,10 +118,6 @@ a{
     transition: .3s
   }
 
-  .footer-menu ul li a:hover {
-    color: #5867dd
-  }
-
   .footer-menu--1 {
     width: 100%
   }
@@ -142,14 +139,6 @@ a{
     line-height: 26px;
     font-size: 15px;
     color: #999
-  }
-
-  .mini-footer p a {
-    color: #5867dd
-  }
-
-  .mini-footer p a:hover {
-    color: #34bfa3
   }
 
   .widget-about img {
@@ -176,10 +165,6 @@ a{
 
   .widget-about .contact-details li span {
     padding-right: 12px
-  }
-
-  .widget-about .contact-details li a {
-    color: #5867dd
   }
 
   @media (max-width: 991px) {

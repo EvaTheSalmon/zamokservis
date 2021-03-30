@@ -9,7 +9,7 @@
   z-index: 2;
 
   @include media-breakpoint-up(md){
-    .phone-section{visibility: hidden}
+    .phone-section{display: none}
   }
 
   padding: 10px 0 10px 0;
@@ -48,6 +48,10 @@
       font-size: 2.5rem;
     }
 
+    @include media-breakpoint-down(sm){
+      .top_pic{display: none}
+    }
+
     .top_pic {
       width: 28px;
       height: 28px;
@@ -66,8 +70,23 @@
     z-index: 10;
     width: 100%;
   }
+  .theme-switch{
+    cursor: pointer;
+    border-radius: .25rem;
+    transition: all .15s ease-in-out;
+    padding: 5px;
+    box-sizing: border-box;
+    color: black;
 
+  }
+  .theme-switch:hover{
+    background-color: #bababa;
+  }
 }
+.top_bar .theme-switch{
+  margin-left: 20px;
+}
+
 .lock-scroll {
   .header {
     &.header-absolute {
