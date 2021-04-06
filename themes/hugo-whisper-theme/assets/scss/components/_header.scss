@@ -82,6 +82,11 @@
   .theme-switch:hover{
     background-color: #bababa;
   }
+  @include media-breakpoint-down(md){
+    .theme-switch:hover{
+      background-color: transparent;
+    }
+  }
 }
 .top_bar .theme-switch{
   margin-left: 20px;

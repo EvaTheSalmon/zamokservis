@@ -1,7 +1,7 @@
 let sum = 0;
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function(event) {
     main_func();
-};
+});
 
 const offer_ids = ["offer_lock_div", "offer_safe_div", "offer_auto_div"];
 
@@ -78,11 +78,11 @@ function lock_func() {
             break;
 
         case "offer_lock_ru":
-            sum = 1500;
+            sum = 2000;
             break;
 
         case "offer_lock_im":
-            sum = 2000;
+            sum = 2500;
             break;
     }
     appendData();
@@ -100,11 +100,11 @@ function safe_func() {
             break;
 
         case "offer_safe_ru":
-            sum = 1500;
+            sum = 2000;
             break;
 
         case "offer_safe_sf":
-            sum = 2000;
+            sum = 2500;
             break;
     }
     appendData();
@@ -122,16 +122,16 @@ function auto_func() {
             break;
 
         case "offer_auto_li":
-            sum = 1500;
+            sum = 2000;
             break;
 
         case "offer_auto_gr":
-            sum = 2000;
+            sum = 2500;
             break;
 
 
         case "offer_auto_mh":
-            sum = 1500;
+            sum = 2000;
             break;
     }
     appendData();

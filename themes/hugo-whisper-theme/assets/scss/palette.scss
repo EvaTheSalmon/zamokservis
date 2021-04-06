@@ -29,6 +29,9 @@
     background-color: var(--bg) !important;
     border-color: transparent transparent transparent var(--primary) !important;
   }
+  .about_us:before {
+    border-color: transparent var(--primary) transparent transparent !important;
+  }
   .listing{
     background-image: none!important;
   }

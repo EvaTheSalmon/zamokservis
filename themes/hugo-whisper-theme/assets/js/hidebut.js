@@ -7,4 +7,4 @@ function colapse() {
         x.style.display = "none";
         document.getElementById('buttonHide').innerHTML = "Показать";
     }
-} 
+}

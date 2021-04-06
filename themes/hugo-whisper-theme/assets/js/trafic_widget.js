@@ -17,13 +17,16 @@ const traffic = [
     [[0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 2, 2, 2, 2, 1, 1, 0, 0]]
 ];
 const colorTL = ["#00dd00", "#98ff98", "#ccff00", "#fbf82d", "#f7e164", "#f4c023", "#ff9966", "#ff0000", "#ff4d00", "#f36223"];
+let currentTime = new Date();
+let bal = document.getElementById('text_bal');
+let day = currentTime.getDay();
+let hour = currentTime.getHours();
 
-window.onload = function () {
-    let currentTime = new Date();
-    let bal = document.getElementById('text_bal');
-    let day = currentTime.getDay();
-    let hour = currentTime.getHours();
-
+document.addEventListener("DOMContentLoaded", function(event) {
     bal.innerHTML = (traffic[day][0][hour]+1).toString();
     document.getElementsByClassName("light")[0].style.setProperty("background-color",colorTL[traffic[day][0][hour]],"important");
-}
+    //document.getElementsByClassName("light")[0].style.backgroundColor = colorTL[traffic[day][0][hour]];
+})
+
+
+
