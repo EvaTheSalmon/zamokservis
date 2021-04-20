@@ -14,5 +14,3 @@ Also you may check:
 - [v2.zamokservis.com](https://v2.zamokservis.com) - for older version
 - [v1.zamokservis.com](https://v1.zamokservis.com) - for ancient version
 - [zamokservis.com/blog](https://zamokservis.com/blog) - for blog on grav
-
-This site is added to 
