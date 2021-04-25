@@ -78,11 +78,11 @@ function lock_func() {
             break;
 
         case "offer_lock_ru":
-            sum = 2000;
+            sum = 1500;
             break;
 
         case "offer_lock_im":
-            sum = 2500;
+            sum = 2000;
             break;
     }
     appendData();
@@ -100,11 +100,11 @@ function safe_func() {
             break;
 
         case "offer_safe_ru":
-            sum = 2000;
+            sum = 1500;
             break;
 
         case "offer_safe_sf":
-            sum = 2500;
+            sum = 2000;
             break;
     }
     appendData();
@@ -122,11 +122,11 @@ function auto_func() {
             break;
 
         case "offer_auto_li":
-            sum = 2000;
+            sum = 1500;
             break;
 
         case "offer_auto_gr":
-            sum = 2500;
+            sum = 2000;
             break;
 
 
