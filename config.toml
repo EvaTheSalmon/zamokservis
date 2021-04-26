@@ -58,9 +58,11 @@ summaryLength = 20
     meta_og_url = "https://zamokservis.com"
     meta_og_image = "https://zamokservis.com/img/logo.png"
     meta_og_description = "Круглосуточное вскрытие и установка замков в Санкт-Петербурге и Ленинградской области. Вскрытие автомобилей. Вскрытие сейфов."
+
     meta_twitter_card = "Служба вскрытия замков"
-    meta_twitter_site = "@enigma84179431"
+    meta_twitter_site = "https://zamokservis.com"
     meta_twitter_creator = "@enigma84179431"
+    meta_twitter_image = "https://zamokservis.com/img/logo.png"
 
   [params.logo]
       mobile = "https://zamokservis.com/img/logo.png"

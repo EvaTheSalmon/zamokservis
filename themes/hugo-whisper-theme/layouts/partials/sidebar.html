@@ -4,7 +4,7 @@
   <ul>
     {{ range where .Site.RegularPages "Section" .Section }}
     <li class="{{ if eq .File.UniqueID $currentNode.File.UniqueID }}active {{ end }}">
-      <a href="{{ .Permalink }}">{{ replace .Title " автомобилей" "" }}</a>
+      <a href="{{ .Permalink }}">{{ trim .Title "в Санкт-Петербурге" }}</a>
     </li>
     {{ end }}
   </ul>
