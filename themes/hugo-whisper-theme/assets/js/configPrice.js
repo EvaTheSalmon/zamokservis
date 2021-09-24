@@ -27,19 +27,19 @@ function main_func() {
             appendData();
             break;
 
+
         case "lc":
             hideAll();
             document.getElementById(offer_ids[0]).hidden = false;
-
 
             sum = 0;
             appendData();
             break;
 
+
         case "sf":
             hideAll();
             document.getElementById(offer_ids[1]).hidden = false;
-
 
             sum = 0;
             appendData();
@@ -49,14 +49,21 @@ function main_func() {
             hideAll();
             document.getElementById(offer_ids[2]).hidden = false;
 
-
             sum = 0;
             appendData();
             break;
 
+
         case "in":
             hideAll();
 
+            sum = 2000;
+            appendData();
+            break;
+
+
+        case "ch":
+            hideAll();
 
             sum = 1500;
             appendData();
@@ -78,11 +85,11 @@ function lock_func() {
             break;
 
         case "offer_lock_ru":
-            sum = 1500;
+            sum = 2000;
             break;
 
         case "offer_lock_im":
-            sum = 2000;
+            sum = 2500;
             break;
     }
     appendData();
@@ -100,11 +107,12 @@ function safe_func() {
             break;
 
         case "offer_safe_ru":
-            sum = 1500;
+            sum = 2000;
             break;
 
         case "offer_safe_sf":
-            sum = 2000;
+            sum = 2500;
+
             break;
     }
     appendData();
@@ -122,16 +130,16 @@ function auto_func() {
             break;
 
         case "offer_auto_li":
-            sum = 1500;
+            sum = 2000;
             break;
 
         case "offer_auto_gr":
-            sum = 2000;
+            sum = 2500;
             break;
 
 
         case "offer_auto_mh":
-            sum = 2000;
+            sum = 2500;
             break;
     }
     appendData();
@@ -139,7 +147,7 @@ function auto_func() {
 
 function appendData() {
     let sSum = document.getElementById('sum');
-    if (sum == "[object HTMLSpanElement]") {
+    if (sum === "[object HTMLSpanElement]") {
         sum = "0"
     }
     sSum.innerHTML = sum + " руб.";
