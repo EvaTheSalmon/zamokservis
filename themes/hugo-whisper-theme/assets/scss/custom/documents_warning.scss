@@ -37,3 +37,8 @@
     width: 60%;
   }
 }
+[data-theme="dark"]{
+  .docs_warn{
+    outline: white 1px solid;
+  }
+}
