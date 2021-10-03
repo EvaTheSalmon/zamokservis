@@ -1,28 +1,26 @@
-{{ $image := .Page.Resources.GetMatch (printf "%s" (.Destination | safeURL)) }}
-{{ $img1080 := $image.Resize "972x" }}
-{{ $img720 := $image.Resize "648x" }}
-{{ $img414 := $image.Resize "373x" }}
-{{ $img375 := $image.Resize "338x" }}
-{{ $img360 := $image.Resize "324x" }}
-{{ $img320 := $image.Resize "288x" }}
-{{ $alt := .PlainText | safeHTML }}
-{{ $caption := "" }}
-{{ with .Title }}
-{{ $caption = . | safeHTML }}
-{{ end }}
-
-<figure>
+{{- $img := .Page.Resources.GetMatch .Destination -}}
+{{- if and (not $img) .Page.File -}}
+{{ $path := path.Join .Page.File.Dir .Destination }}
+{{- $img = resources.Get $path -}}
+{{- end -}}
+{{- with $img -}}
+{{- $large := $img.Resize "1024x" -}}
+{{ $medium := $large.Fill "768x" -}}
+{{ $small := $medium.Fill "480x" -}}
+<figure class="image-caption">
     <img
-            class="img_block"
-            sizes="100vw"
-            srcset="{{ $img1080.RelPermalink }} 972w, {{ $img720.RelPermalink }} 648w, {{ $img414.RelPermalink }} 373w, {{ $img375.RelPermalink }} 338w, {{ $img360.RelPermalink }} 324w, {{ $img320.RelPermalink }} 228w"
-            src="{{ $image.RelPermalink }}"
-            width="{{ $image.Width }}"
-            height="{{ $image.Height }}"
-            alt="{{ if $alt }}{{ $alt }}{{ else if $caption }}{{ $caption | markdownify | plainify }}{{ else }}&nbsp;{{ end }}"
-            loading="lazy"
-    >
-    {{ with $caption }}
-    <figcaption>{{ . | markdownify }}</figcaption>
-    {{ end }}
+        class="img_block"
+        alt="{{ $.Text }}"
+        srcset="
+            {{ $small.RelPermalink }} 480w,
+            {{ $medium.RelPermalink }} 768w,
+            {{ $large.RelPermalink }} 1024w" sizes="100vw"
+        src="{{ $small.RelPermalink }}"
+        width="{{ $img.Width }}"
+        height="{{ $img.Height }}"
+        loading="lazy"
+    />
+    <figcaption>{{ with $.Title | safeHTML }}{{ . }}{{ end }}</figcaption>
 </figure>
+{{- else -}}
+<img src="{{ .Destination | safeURL }}" alt="{{ $.Text }}" />{{- end -}}
