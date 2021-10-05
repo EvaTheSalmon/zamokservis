@@ -41,18 +41,50 @@
 @import 'components/overview';
 @import 'components/anchor';
 
+.page-default-list{
+  @include media-breakpoint-down(md) {
+    .title-summary {
+      text-align: left !important;
+    }
+  }
+  .archive-article-date{
+    margin-bottom: 15px;
+    text-align: right;
+  }
+
+  .img_summary{
+    max-height: 450px;
+    overflow: hidden;
+  }
+}
+
 //Pages with lists
 .main,.page-default-single {
   .sidebar ul{
     text-align: left;
   }
+  .archive-article-date{
+    text-align: right;
+  }
+  @include media-breakpoint-down(md) {
 
-  @include media-breakpoint-down(sm) {
     .sidebar ul{
       text-align: center;
     }
   }
-
+  .content ul {
+    text-align: justify;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    margin-bottom: 40px;
+    @include media-breakpoint-up(md) {
+      width: 80%;
+    }
+    @include media-breakpoint-up(lg) {
+      width: 60%;
+    }
+  }
   .traffic-light-widget{
     max-width: 620px;
   }
@@ -96,7 +128,7 @@ body {
   padding-left: $grid-gutter-width;
   padding-right: $grid-gutter-width;
 }
-.main,.page-default-single {
+.main,.page-default-single, .page-default-list {
   text-align: center;
   .title {
     font-weight: lighter;

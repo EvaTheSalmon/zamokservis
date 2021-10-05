@@ -4,7 +4,7 @@
   padding-bottom: 30px;
   width: 100%;
 }
-.img_block{
+.img_block, .img_summary{
   margin: 0 auto;
   @include media-breakpoint-up(md) {
     width: 80%;

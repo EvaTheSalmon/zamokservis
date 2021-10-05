@@ -1,7 +1,40 @@
-<div class="summary mb-2">
-  {{ if .Params.image }}
-  <img alt="{{ .Title }}" src="{{ .Params.image }}" />
-  {{ end}}
-  <h2 class="title-summary"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+{{ $pageLink := .Permalink }}
+
+<div class="summary mb-6">
+  <header>
+    <h2 class="title-summary" id="{{ .Title }}"><a href="{{ $pageLink }}">{{ .Title }}</a></h2>
+    <div class="archive-article-date">
+      <i class="fa fa-calendar"></i>
+      <time datetime="{{ .Date }}" itemprop="datePublished"></time>
+    </div>
+  </header>
+
+    {{$img := index (.Resources.ByType "image") 0}}
+
+  {{$sum := .Summary}}
+
+  {{ with $img }}
+
+  {{- $img1080 := $img.Resize "972x" -}}
+  {{- $img720 := $img.Resize "648x" -}}
+  {{- $img414 := $img.Resize "373x" -}}
+  {{- $img375 := $img.Resize "338x" -}}
+  {{- $img360 := $img.Resize "324x" -}}
+  {{- $img320 := $img.Resize "288x" -}}
+  <a href="{{ $pageLink }}"><figure class="img_summary">
+      <img
+        alt="{{ $sum | truncate 20}}"
+        sizes="100vw"
+        srcset="{{ $img1080.RelPermalink }} 972w, {{ $img720.RelPermalink }} 648w, {{ $img414.RelPermalink }} 373w, {{ $img375.RelPermalink }} 338w, {{ $img360.RelPermalink }} 324w, {{ $img320.RelPermalink }} 228w"
+        src="{{ $img.RelPermalink }}"
+        width="{{ $img.Width }}"
+        height="{{ $img.Height }}"
+        loading="lazy"
+    />
+  </figure></a>
+  {{ end }}
+  <br>
+  <p class="archive-article-date">{{ .Lastmod.Day }} {{ index $.Site.Data.month (printf "%d" .Lastmod.Month) }} {{ .Lastmod.Year }}</p>
   <p>{{ .Summary }}</p>
+  <p><a href="{{ $pageLink }}">Читать далее...</a></p>
 </div>

@@ -4,18 +4,18 @@
 {{- $img = resources.Get $path -}}
 {{- end -}}
 {{- with $img -}}
-{{- $large := $img.Resize "1024x" -}}
-{{ $medium := $large.Fill "768x" -}}
-{{ $small := $medium.Fill "480x" -}}
-<figure class="image-caption">
+{{- $img1080 := $img.Resize "972x" -}}
+{{- $img720 := $img.Resize "648x" -}}
+{{- $img414 := $img.Resize "373x" -}}
+{{- $img375 := $img.Resize "338x" -}}
+{{- $img360 := $img.Resize "324x" -}}
+{{- $img320 := $img.Resize "288x" -}}
+<figure class="img_block">
     <img
-        class="img_block"
         alt="{{ $.Text }}"
-        srcset="
-            {{ $small.RelPermalink }} 480w,
-            {{ $medium.RelPermalink }} 768w,
-            {{ $large.RelPermalink }} 1024w" sizes="100vw"
-        src="{{ $small.RelPermalink }}"
+        sizes="100vw"
+        srcset="{{ $img1080.RelPermalink }} 972w, {{ $img720.RelPermalink }} 648w, {{ $img414.RelPermalink }} 373w, {{ $img375.RelPermalink }} 338w, {{ $img360.RelPermalink }} 324w, {{ $img320.RelPermalink }} 228w"
+        src="{{ $img.RelPermalink }}"
         width="{{ $img.Width }}"
         height="{{ $img.Height }}"
         loading="lazy"

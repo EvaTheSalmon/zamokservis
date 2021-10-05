@@ -21,9 +21,20 @@
 {{ end }}
 
 {{ define "main" }}
-<h1 class="title">{{.Title}}</h1>
-<div class="content {{if .Site.Params.enable_anchor_link}}{{ "anchor-link-enabled" }}{{ end }}">
-  {{.Content}}
+<div class="strip">
+  <div class="container pt-4 pb-10">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="title">{{.Title}}</h1>
+        <p class="archive-article-date">{{ .Lastmod.Day }} {{ index $.Site.Data.month (printf "%d" .Lastmod.Month) }} {{ .Lastmod.Year }}</p>
+        <div class="content {{if .Site.Params.enable_anchor_link}}{{ "anchor-link-enabled" }}{{ end }}">
+        {{.Content}}
+      </div>
+      <a class="button button-primary mb-2" href="../#{{ .Title }}">
+        Назад
+      </a>
+    </div>
+  </div>
 </div>
 </div>
 {{ end }}

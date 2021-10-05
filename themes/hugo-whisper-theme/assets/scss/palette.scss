@@ -15,7 +15,7 @@
   --primary: #09993e;
   --secondary: #725c82;
 
-  :not(li):not(span):not(a):not(.button):not(.about_us):not(time):not(.brand_pannel):not(.numberCircle){
+  :not(li):not(span):not(a):not(.button):not(.about_us):not(.brand_pannel):not(.numberCircle){
     background-color: var(--bg) !important;
     color: var(--white) !important;
   }
