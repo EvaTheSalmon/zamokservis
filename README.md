@@ -13,4 +13,3 @@ Also you may check:
 - [beta.zamokservis.com](https://beta.zamokservis.com) for beta
 - [v2.zamokservis.com](https://v2.zamokservis.com) - for older version
 - [v1.zamokservis.com](https://v1.zamokservis.com) - for ancient version
-- [zamokservis.com/blog](https://zamokservis.com/blog) - for blog on grav
