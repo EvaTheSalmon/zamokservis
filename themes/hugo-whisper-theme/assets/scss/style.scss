@@ -58,6 +58,22 @@
   }
 }
 
+.page-default-single {
+  .content > ul {
+    text-align: justify;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    margin-bottom: 40px;
+    @include media-breakpoint-up(md) {
+      width: 80%;
+    }
+    @include media-breakpoint-up(lg) {
+      width: 60%;
+    }
+  }
+}
+
 //Pages with lists
 .main,.page-default-single {
   .sidebar ul{
@@ -70,19 +86,6 @@
 
     .sidebar ul{
       text-align: center;
-    }
-  }
-  .content ul {
-    text-align: justify;
-    margin: 0 auto;
-    font-size: 1.2rem;
-    font-weight: lighter;
-    margin-bottom: 40px;
-    @include media-breakpoint-up(md) {
-      width: 80%;
-    }
-    @include media-breakpoint-up(lg) {
-      width: 60%;
     }
   }
   .traffic-light-widget{

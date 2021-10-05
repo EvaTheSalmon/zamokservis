@@ -1,10 +1,11 @@
 // as soon as loaded - checking theme
-if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+document.documentElement.setAttribute("data-theme", "dark");
+if (localStorage.getItem("theme") == "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+} else if (localStorage.getItem("theme") === null && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     //if dark theme preferred, set document with a `data-theme` attribute
     document.documentElement.setAttribute("data-theme", "dark");
     localStorage.setItem("theme","dark");
-} else if (localStorage.getItem("theme") == "dark") {
-    document.documentElement.setAttribute("data-theme", "dark");
 }
 
 function change_theme(){
@@ -19,7 +20,7 @@ function change_theme(){
         // If current = dark then changing to light
         document.documentElement.removeAttribute("data-theme", "dark");
         var theme = "light";
-        localStorage.removeItem("theme","dark");
+        localStorage.setItem("theme","light");
     } else {
         // If current = light then changing to dark
         document.documentElement.setAttribute("data-theme", "dark");

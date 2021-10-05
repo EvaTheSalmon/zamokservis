@@ -26,7 +26,7 @@
     <div class="row">
       <div class="col-12">
         <h1 class="title">{{.Title}}</h1>
-        <p class="archive-article-date">{{ .Lastmod.Day }} {{ index $.Site.Data.month (printf "%d" .Lastmod.Month) }} {{ .Lastmod.Year }}</p>
+        {{ if in .File.Path "blog" }}<p class="archive-article-date">{{ .Lastmod.Day }} {{ index $.Site.Data.month (printf "%d" .Lastmod.Month) }} {{ .Lastmod.Year }}</p>{{end}}
         <div class="content {{if .Site.Params.enable_anchor_link}}{{ "anchor-link-enabled" }}{{ end }}">
         {{.Content}}
       </div>

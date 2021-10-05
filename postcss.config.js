@@ -19,7 +19,7 @@ module.exports = {
             overrideBrowserslist:'last 4 version'
         },
         '@fullhuman/postcss-purgecss':{
-            content: ['./themes/hugo-whisper-theme/layouts/**/*.html', './themes/hugo-whisper-theme/layouts/_markup/**/*.html', './themes/hugo-whisper-theme/layouts/*.html','./themes/hugo-whisper-theme/assets/js/**/*.js'],
+            content: ['./themes/hugo-whisper-theme/layouts/**/*.html','./themes/hugo-whisper-theme/assets/js/**/*.js'],
             safelist: ['blockquote']
             },
         'cssnano':{preset:
