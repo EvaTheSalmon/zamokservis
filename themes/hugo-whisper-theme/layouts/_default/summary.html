@@ -3,10 +3,9 @@
 <div class="summary mb-6">
   <header>
     <h2 class="title-summary" id="{{ .Title }}"><a href="{{ $pageLink }}">{{ .Title }}</a></h2>
-    <div class="archive-article-date">
-      <i class="fa fa-calendar"></i>
-      <time datetime="{{ .Date }}" itemprop="datePublished"></time>
-    </div>
+
+
+
   </header>
 
     {{$img := index (.Resources.ByType "image") 0}}
@@ -21,7 +20,8 @@
   {{- $img375 := $img.Resize "338x" -}}
   {{- $img360 := $img.Resize "324x" -}}
   {{- $img320 := $img.Resize "288x" -}}
-  <a href="{{ $pageLink }}"><figure class="img_summary">
+  <figure class="img_summary">
+    <a href="{{ $pageLink }}">
       <img
         alt="{{ $sum | truncate 20}}"
         sizes="100vw"
@@ -31,10 +31,17 @@
         height="{{ $img.Height }}"
         loading="lazy"
     />
-  </figure></a>
+    </a>
+  </figure>
   {{ end }}
   <br>
-  <p class="archive-article-date">{{ .Lastmod.Day }} {{ index $.Site.Data.month (printf "%d" .Lastmod.Month) }} {{ .Lastmod.Year }}</p>
-  <p>{{ .Summary }}</p>
-  <p><a href="{{ $pageLink }}">Читать далее...</a></p>
+  {{ if in .File.Path "blog" }}
+    <p class="archive-article-date">{{ .Lastmod.Day }} {{ index $.Site.Data.month (printf "%d" .Lastmod.Month) }} {{ .Lastmod.Year }}</p>
+    <p>{{ .Summary }}</p>
+    <p><a href="{{ $pageLink }}">Читать далее...</a></p>
+  {{else}}
+    <p>{{ .Summary | truncate 120}}</p>
+  <p><a href="{{ $pageLink }}">Перейти</a></p>
+  {{end}}
+
 </div>

@@ -10,12 +10,14 @@
         <h1 class="title">{{ .Title }}</h1>
         <div class="content">
           {{ if .Content }}
-          {{ .Content }}
+            {{ .Content }}
           {{end}}
 
-          {{ range.Pages }}
-          {{ .Render "summary" }}
-          {{ end }}
+          {{ if or (in .File.Path "cities") (in .File.Path "blog") }}
+            {{ range.Pages }}
+            {{ .Render "summary" }}
+            {{ end }}
+          {{end}}
         </div>
         <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link | relURL }}">
           {{ .Site.Params.homepage_button_text }}

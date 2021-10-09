@@ -30,9 +30,7 @@
         <div class="content {{if .Site.Params.enable_anchor_link}}{{ "anchor-link-enabled" }}{{ end }}">
         {{.Content}}
       </div>
-      <a class="button button-primary mb-2" href="../#{{ .Title }}">
-        Назад
-      </a>
+      {{ if in .File.Path "blog" }}<a class="button button-primary mb-2" href="../#{{ .Title }}">Назад</a>{{end}}
     </div>
   </div>
 </div>

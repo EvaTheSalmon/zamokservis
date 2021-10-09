@@ -14,7 +14,7 @@ type: usual
 
 {{< about_company >}}
 
-{{< trafic_widget >}}
+{{< traffic_widget >}}
 
 {{< towns_widget_sm >}}
 
