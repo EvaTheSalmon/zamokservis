@@ -3,28 +3,32 @@
 
 <head>
   <meta charset="utf-8">
-  {{ $file_name := trim .File.LogicalName ".md" }}
-
-  {{ $urlAMP := print "static/amp/" $file_name ".amp.html"}}
-
-  {{ $ampPath := trim .File.Path ".md" }}
-
-  {{ if eq $file_name "_index" }}
+  {{$dir := replace .File.Dir "\\" "/"}}
+  {{$name := replace .File.Path ".md" ""}}
+  {{ if and (eq .File.ContentBaseName "_index") (eq $dir "") }}
     <link rel=amphtml href=https://zamokservis.com/amp/index.amp.html />
-    <link rel=canonical href=https://zamokservis.com />
-  {{ else }}
-    {{ if (fileExists $urlAMP) }}
-      <link rel=amphtml href=https://zamokservis.com/amp/{{ $file_name }}.amp.html />
-      {{ if eq (path.Dir $ampPath) "."}}
-      <link rel=canonical href=https://zamokservis.com/{{$file_name}}/ />
-      {{else}}
-  <link rel=canonical href=https://zamokservis.com/{{ path.Dir $ampPath }}/{{$file_name}}/ />
-    {{end}}
-    {{ end }}
-  {{ end }}
-
+    <link rel=canonical href=https://zamokservis.com/>
+  {{ else if and (eq .File.ContentBaseName "_index") (not (in .File.Dir "blog")) (not (in .File.Dir "cities"))}}
+    <link rel=amphtml href=https://zamokservis.com/amp/{{replace $dir "/" ""}}.amp.html />
+    <link rel=canonical href=https://zamokservis.com/{{$dir}}>
+  {{ else if and (in .File.Dir "ustanovka-zamkov") }}
+    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 17) "/" ""}}.amp.html />
+    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir "\\" "/" }}>
+  {{ else if and (in .File.Dir "vskrytie-dverej") }}
+    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 15) "/" ""}}.amp.html />
+    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir "\\" "/" }}>
+  {{ else if and (in .File.Dir "vskrytie-avtomobilej") }}
+    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 20) "/" ""}}.amp.html />
+    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir "\\" "/"}}>
+  {{ else if or (in .File.Dir "blog") (in .File.Dir "cities") }}
+    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir "\\" "/" }}>
+  {{ else if or (eq $name "contact-us") (eq $name "how-we-work") (eq $name "company-info") (eq $name "company-info") (eq $name "prices") (eq $name "support") (eq $name "terms-and-conditions") (eq $name "faq")}}
+    <link rel=canonical href=https://zamokservis.com/{{ $name }}>
+  {{else}}
+    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace $dir "/" ""}}.amp.html />
+    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir "\\" "/" }}>
+  {{end}}
   <meta name=keywords content="замена,замок,вскрытие,ремонт,открыть,спб,мастер" />
-
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -144,11 +148,11 @@
       "@context": "http://www.schema.org",
       "@type": "EmergencyService",
       "name": "Энигма Вскрытие и установка замков",
-    {{ if eq $file_name "_index" }}
-      "url": "https://zamokservis.com/",
-    {{ else }}
-      "url": "https://zamokservis.com/{{ $file_name }}/",
-    {{ end }}
+      {{ if and (eq .File.ContentBaseName "_index") (eq $dir "") }}
+        "url": "https://zamokservis.com/",
+      {{ else }}
+        "url": "https://zamokservis.com/{{ $dir }}/",
+      {{ end }}
       "paymentAccepted": [ "cash", "credit card" ],
       "logo": "https://zamokservis.com/img/logo.png",
       "image": "https://zamokservis.com/img/logo.png",
