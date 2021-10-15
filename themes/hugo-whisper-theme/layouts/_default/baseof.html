@@ -3,49 +3,47 @@
 
 <head>
   <meta charset="utf-8">
-  {{$dir := replace .File.Dir "\\" "/"}}
+  {{$dir := replace .File.Dir `\` "/"}}
   {{$name := replace .File.Path ".md" ""}}
-  {{ if and (eq .File.ContentBaseName "_index") (eq $dir "") }}
-    <link rel=amphtml href=https://zamokservis.com/amp/index.amp.html />
-    <link rel=canonical href=https://zamokservis.com/>
+
+  {{ if and (eq .File.ContentBaseName "_index") (eq $dir "/") }}
+    <link rel=amphtml href=https://zamokservis.com/amp/index.amp.html>
   {{ else if and (eq .File.ContentBaseName "_index") (not (in .File.Dir "blog")) (not (in .File.Dir "cities"))}}
-    <link rel=amphtml href=https://zamokservis.com/amp/{{replace $dir "/" ""}}.amp.html />
-    <link rel=canonical href=https://zamokservis.com/{{$dir}}>
+    <link rel=amphtml href=https://zamokservis.com/amp/{{replace $dir "/" ""}}.amp.html>
   {{ else if and (in .File.Dir "ustanovka-zamkov") }}
-    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 17) "/" ""}}.amp.html />
-    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir "\\" "/" }}>
+    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 17) "/" ""}}.amp.html>
   {{ else if and (in .File.Dir "vskrytie-dverej") }}
-    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 15) "/" ""}}.amp.html />
-    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir "\\" "/" }}>
+    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 15) "/" ""}}.amp.html>
   {{ else if and (in .File.Dir "vskrytie-avtomobilej") }}
-    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 20) "/" ""}}.amp.html />
-    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir "\\" "/"}}>
+    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 20) "/" ""}}.amp.html>
   {{ else if or (in .File.Dir "blog") (in .File.Dir "cities") }}
-    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir "\\" "/" }}>
-  {{ else if or (eq $name "contact-us") (eq $name "how-we-work") (eq $name "company-info") (eq $name "company-info") (eq $name "prices") (eq $name "support") (eq $name "terms-and-conditions") (eq $name "faq")}}
+    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir `\` "/" }}>
+  {{ else if or (eq $name "contact-us") (eq $name "how-we-work") (eq $name "company-info") (eq $name "company-info") (eq $name "prices") (eq $name "support") (eq $name "terms-and-conditions") (eq $name "faq") (eq $name "tipy-zamkov") }}
     <link rel=canonical href=https://zamokservis.com/{{ $name }}>
   {{else}}
-    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace $dir "/" ""}}.amp.html />
-    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir "\\" "/" }}>
+    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace $dir "/" ""}}.amp.html>
   {{end}}
-  <meta name=keywords content="замена,замок,вскрытие,ремонт,открыть,спб,мастер" />
+
+  <link rel=canonical href={{ add "https://zamokservis.com" .RelPermalink }}>
+
+  <meta name=keywords content="замена,замок,вскрытие,ремонт,открыть,спб,мастер">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="{{ .Summary }}" />
-  <meta property="og:title" content="{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}" />
-  <meta property="og:type" content="{{ .Site.Params.homepage_meta_tags.meta_og_type }}" />
-  <meta property="og:url" content="{{ .Permalink }}" />
-  <meta property="og:image" content="{{ .Site.Params.homepage_meta_tags.meta_og_image }}" />
-  <meta property="og:description" content="{{ .Summary }}" />
+  <meta name="description" content="{{ .Summary }}">
+  <meta property="og:title" content="{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}">
+  <meta property="og:type" content="{{ .Site.Params.homepage_meta_tags.meta_og_type }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:image" content="{{ .Site.Params.homepage_meta_tags.meta_og_image }}">
+  <meta property="og:description" content="{{ .Summary }}">
 
-  <meta name="twitter:card" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_card }}" />
-  <meta name="twitter:site" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_site }}" />
+  <meta name="twitter:card" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_card }}">
+  <meta name="twitter:site" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_site }}">
   <meta property="twitter:url" content="{{ .Permalink }}">
   <meta name="twitter:title" content="{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}">
   <meta name="twitter:description" content="{{ .Summary }}">
-  <meta name="twitter:creator" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_creator }}" />
+  <meta name="twitter:creator" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_creator }}">
   {{ block "meta_tags" . }}{{end}}
 
   <link rel="apple-touch-icon" sizes="180x180" href="/ico/apple-touch-icon.png">
@@ -56,7 +54,9 @@
   <link rel="shortcut icon" href="/ico/favicon.ico">
   <meta name="msapplication-TileColor" content="#000000">
   <meta name="msapplication-config" content="/ico/browserconfig.xml">
-  <meta name="theme-color" content="#eef2f5">
+
+  <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#2d2d2d" media="(prefers-color-scheme: dark)">
 
   {{- if .Site.IsServer -}}
       {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" (print "css/main.css") "enableSourceMap" false)}}
@@ -148,11 +148,7 @@
       "@context": "http://www.schema.org",
       "@type": "EmergencyService",
       "name": "Энигма Вскрытие и установка замков",
-      {{ if and (eq .File.ContentBaseName "_index") (eq $dir "") }}
-        "url": "https://zamokservis.com/",
-      {{ else }}
-        "url": "https://zamokservis.com/{{ $dir }}/",
-      {{ end }}
+      "url": {{ add "https://zamokservis.com" .RelPermalink }},
       "paymentAccepted": [ "cash", "credit card" ],
       "logo": "https://zamokservis.com/img/logo.png",
       "image": "https://zamokservis.com/img/logo.png",
@@ -196,5 +192,4 @@
     }
   </script>
 </body>
-
 </html>

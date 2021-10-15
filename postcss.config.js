@@ -19,9 +19,13 @@ module.exports = {
             overrideBrowserslist:'last 4 version'
         },
         '@fullhuman/postcss-purgecss':{
-            content: ['./themes/hugo-whisper-theme/layouts/**/*.html','./themes/hugo-whisper-theme/assets/js/**/*.js'],
-            safelist: ['blockquote']
-            },
+            content: [
+                './themes/hugo-whisper-theme/layouts/**/*.html',
+                './themes/hugo-whisper-theme/assets/js/**/*.js',
+                './layouts/**/*.html'
+            ],
+            safelist: ['blockquote', 'photos', '']
+        },
         'cssnano':{preset:
                 ['default', { discardComments: true }]
         }
