@@ -42,6 +42,10 @@ summaryLength = 20
     url = "/vskrytie-sejfov/"
     weight = 2
 
+# [outputs]
+#   home = ['HTML', 'AMP', 'RSS']
+#   page = ['HTML', 'AMP', 'RSS']
+
 [params]
   homepage_button_link = '/'
   homepage_button_text = 'На главную'

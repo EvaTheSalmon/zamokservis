@@ -16,10 +16,10 @@
     <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 15) "/" ""}}.amp.html>
   {{ else if and (in .File.Dir "vskrytie-avtomobilej") }}
     <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 20) "/" ""}}.amp.html>
-  {{ else if or (in .File.Dir "blog") (in .File.Dir "cities") }}
-    <link rel=canonical href=https://zamokservis.com/{{ replace .File.Dir `\` "/" }}>
+  {{ else if or (in .File.Dir "blog") (in .File.Dir "cities") (in .File.Dir "tipy-zamkov") }}
+
   {{ else if or (eq $name "contact-us") (eq $name "how-we-work") (eq $name "company-info") (eq $name "company-info") (eq $name "prices") (eq $name "support") (eq $name "terms-and-conditions") (eq $name "faq") (eq $name "tipy-zamkov") }}
-    <link rel=canonical href=https://zamokservis.com/{{ $name }}>
+
   {{else}}
     <link rel=amphtml href=https://zamokservis.com/amp/{{ replace $dir "/" ""}}.amp.html>
   {{end}}

@@ -25,19 +25,15 @@
       backface-visibility: hidden;
       border-radius: 50%;
 
-      width: 20vw;
-      height: 20vw;
+      width: 9vw;
+      height: 9vw;
       max-width: 100px;
       max-height: 100px;
 
       display: inline-block;
 
-
       margin: 0 1em 1em;
       position: relative;
-
-
-
 
       a {
         position: absolute;
@@ -47,25 +43,26 @@
         left: 0;
       }
 
-
-
-    &:hover {
-      opacity: .65;
+      &:hover {
+        opacity: .65;
+      }
     }
-    }
-    .tg{
+
+    .tg {
       background-image: url("/img/tg.png");
       background-position-x: center;
       background-position-y: center;
       background-size: contain;
     }
-    .wa{
+
+    .wa {
       background-image: url("/img/whatsapp.png");
       background-position-x: center;
       background-position-y: center;
       background-size: contain;
     }
-    .vk{
+
+    .vk {
       background-image: url("/img/vk.png");
       background-position-x: center;
       background-position-y: center;
