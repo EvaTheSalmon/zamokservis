@@ -24,7 +24,7 @@ module.exports = {
                 './themes/hugo-whisper-theme/assets/js/**/*.js',
                 './layouts/**/*.html'
             ],
-            safelist: ['blockquote', 'photos', '']
+            safelist: ['blockquote', 'photos', 'table', 'th', 'tr', 'thead', 'tbody', 'td']
         },
         'cssnano':{preset:
                 ['default', { discardComments: true }]
