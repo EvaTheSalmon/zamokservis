@@ -57,7 +57,7 @@ def convert(path_string, donotresize):
                 sys.stdout.flush()
 
 
-convert("C:\\Users\\Oleg\\git\\zamokservis\\static\\img\\src", 0)
-convert("C:\\Users\\Oleg\\git\\zamokservis\\static\\img\\car_brands", 1)
-convert("C:\\Users\\Oleg\\git\\zamokservis\\static\\img\\door_brands", 1)
-convert("C:\\Users\\Oleg\\git\\zamokservis\\static\\img\\key_brands", 1)
+convert("..\\static\\img\\src", 0)
+convert("..\\static\\img\\car_brands", 1)
+convert("..\\static\\img\\door_brands", 1)
+convert("..\\static\\img\\key_brands", 1)
