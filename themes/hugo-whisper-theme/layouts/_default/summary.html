@@ -36,7 +36,7 @@
   {{ end }}
   <br>
   {{ if in .File.Path "blog" }}
-    <p class="archive-article-date">{{ .Lastmod.Day }} {{ index $.Site.Data.month (printf "%d" .Lastmod.Month) }} {{ .Lastmod.Year }}</p>
+    <p class="archive-article-date">{{ .Lastmod.Day }} {{ .Lastmod.Format "02.01.2006" }}</p>
     <p>{{ .Summary }}</p>
     <p><a href="{{ $pageLink }}">Читать далее...</a></p>
   {{else}}

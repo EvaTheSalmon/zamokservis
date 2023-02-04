@@ -10,3 +10,5 @@
 /clean_public.bat
 /package.json
 /package-lock.json
+/scripts/venv/
+*.zip
