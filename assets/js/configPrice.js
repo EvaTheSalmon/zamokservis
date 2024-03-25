@@ -57,7 +57,7 @@ function main_func() {
         case "in":
             hideAll();
 
-            sum = 2000;
+            sum = 3000;
             appendData();
             break;
 
@@ -65,7 +65,7 @@ function main_func() {
         case "ch":
             hideAll();
 
-            sum = 1500;
+            sum = 2000;
             appendData();
             break;
     }
@@ -85,11 +85,11 @@ function lock_func() {
             break;
 
         case "offer_lock_ru":
-            sum = 2000;
+            sum = 2500;
             break;
 
         case "offer_lock_im":
-            sum = 2500;
+            sum = 3000;
             break;
     }
     appendData();
@@ -107,11 +107,11 @@ function safe_func() {
             break;
 
         case "offer_safe_ru":
-            sum = 2000;
+            sum = 2500;
             break;
 
         case "offer_safe_sf":
-            sum = 2500;
+            sum = 3000;
 
             break;
     }
@@ -130,16 +130,16 @@ function auto_func() {
             break;
 
         case "offer_auto_li":
-            sum = 2000;
+            sum = 2500;
             break;
 
         case "offer_auto_gr":
-            sum = 2500;
+            sum = 3000;
             break;
 
 
         case "offer_auto_mh":
-            sum = 2500;
+            sum = 3000;
             break;
     }
     appendData();
