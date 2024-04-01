@@ -1,8 +1,8 @@
 ---
-title: "Вскрытие замков в Рощино"
-date: 2020-11-03T00:55:30+03:00
+title: "Установка замков в Рощино"
+date: 2024-04-01-11-03T00:55:30+03:00
 draft: false
-show_sidebar: true
+show_sidebar: false
 ---
 
 ![Установка замков в Рощино](Rochino1.jpg)

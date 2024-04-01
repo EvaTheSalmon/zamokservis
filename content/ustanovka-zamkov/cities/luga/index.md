@@ -1,8 +1,8 @@
 ---
-title: "Вскрытие замков в Луге"
+title: "Установка замков в Луге"
 date: 2021-15-11T00:55:30+03:00
 draft: false
-show_sidebar: true
+show_sidebar: false
 ---
 
 ![Установка замков в Луге](Luga1.jpg)

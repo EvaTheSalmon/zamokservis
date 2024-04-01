@@ -1,8 +1,8 @@
 ---
-title: "Вскрытие замков в Новой Охте"
-date: 2020-05-09T00:55:30+03:00
+title: "Установка замков в Новой Охте"
+date: 2024-04-01-05-09T00:55:30+03:00
 draft: false
-show_sidebar: true
+show_sidebar: false
 ---
 
 ![Установка замков в Новой охте](Novaya-ochta1.jpg)

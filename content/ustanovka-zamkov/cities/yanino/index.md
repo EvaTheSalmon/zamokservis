@@ -1,8 +1,8 @@
 ---
-title: "Вскрытие замков в поселке Янино"
+title: "Установка замков в поселке Янино"
 date: 2024-03-26T11:53:00+03:00 
 draft: false 
-show_sidebar: true
+show_sidebar: false
 ---
 
 ![Установка замков в Янино](Yanino1.jpg)

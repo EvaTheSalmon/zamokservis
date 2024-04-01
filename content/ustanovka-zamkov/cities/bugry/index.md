@@ -1,8 +1,8 @@
 ---
-title: "Вскрытие замков в поселке Бугры"
+title: "Установка замков в поселке Бугры"
 date: 2024-03-26T11:53:00+03:00 
 draft: false 
-show_sidebar: true
+show_sidebar: false
 ---
 
 ![Установка замков в Буграх](Bugry1.jpg)
