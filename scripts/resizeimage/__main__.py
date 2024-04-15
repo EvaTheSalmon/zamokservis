@@ -89,8 +89,8 @@ def replace_white_with_transparent(dest_dir) -> None:
                         pixdata[x, y] = (255, 255, 255, 0)
             try:
                 img.save(file)
-            except:
-                logging.warning("Couldn't save file " + file + " when removing white background")
+            except Exception as error:
+                logging.warning("Couldn't save file " + file + " when removing white background. ", error)
             i+=1
 
 
@@ -175,11 +175,10 @@ def compress(dest_dir) -> None:
             
             try:
                 image = Image.open(file)
-                image = image.convert("RGBA")
 
                 image.save(file, optimize = True, quality = 70) # fallback file to display
-            except:
-                logging.warning("Error while saving file " + file + " as webp, skipping")
+            except Exception as error:
+                logging.warning("Error while saving file " + file + " as webp, skipping. ", error)
                 break            
             i+=1
 
