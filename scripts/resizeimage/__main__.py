@@ -25,40 +25,53 @@ logging.basicConfig(
 
 
 def convert_to_jpg(dest_dir) -> None:
+    number_of_files = 0
+    list_of_files = []
+    file_counter = 1
+
     for root, dirs, files in os.walk(dest_dir):
-        
-        number_of_files = len(next(os.walk(dest_dir))[2])
-        i = 1        
-        
         for file in files:
+            list_of_files.append(os.path.join(root, file))
 
+    number_of_files = len(list_of_files)
+    logging.info("Total files found: " + str(number_of_files))
+    
+    for file in list_of_files:
+        
+        logging.info("Processing conversion, current: " + file + ", " + str(file_counter) + " out of " + str(number_of_files) + " files")
+        file_counter += 1
 
-            file = root + str(os.sep) + file
+        try:
+            image = Image.open(file)
+            image = image.convert("RGBA")
 
-            logging.info("Processing conversion, current: " + file + ", " + str(i) + " out of " + str(number_of_files) + " files")
-            
-            try:
-                image = Image.open(file)
-                image = image.convert("RGBA")
+            filename, extension = os.path.splitext(file)
 
-                filename, extension = os.path.splitext(file)                
-                
-                if str(extension) == ".webp":
-                    image.save(filename + ".jpg", "jpeg", optimize = True, quality = 10) # main file to display
-                    break
+            if str(extension) == ".webp":
 
-                if str(extension) == ".jpg":
-                    image.save(filename + ".webp", "webp", optimize = True, quality = 10) # fallback file to display
-                    break
+                white_mask = Image.new('RGB', image.size, (255, 255, 255))
+                image = white_mask.paste(image, (0, 0), image)
 
-                image.save(filename + ".jpg", "jpeg", optimize = True, quality = 10)
-                image.save(filename + ".webp", "webp", optimize = True, quality = 10)
-                
-            except:
-                logging.warning("Error while saving file " + file + " as webp, skipping")
+                image.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)
                 break
-            os.remove(file)
-            i+=1
+
+            if str(extension) == ".jpg":
+                
+                image.save(filename + ".webp", "webp", optimize = True, quality = 100)
+                break
+
+            image.save(filename + ".webp", "webp", optimize = True, quality = 100)
+
+            white_mask = Image.new('RGB', image.size, (255, 255, 255))
+            image = white_mask.paste(image, (0, 0), image)
+
+            image.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)   
+            
+        except Exception as error:
+            logging.warning("Error while saving file " + file + " as webp, skipping. ", error)                
+            break
+        # os.remove(file)
+            
                 
 
 def replace_white_with_transparent(dest_dir) -> None:
@@ -205,9 +218,9 @@ def main(self) -> None:
     donotresize = args.donotresize
     
     convert_to_jpg(dest_dir)
-    replace_white_with_transparent(dest_dir)
-    resize(dest_dir, donotresize)
-    compress(dest_dir)
+    # replace_white_with_transparent(dest_dir)
+    # resize(dest_dir, donotresize)
+    # compress(dest_dir)
 
 
 if __name__ == '__main__':
