@@ -24,7 +24,11 @@ logging.basicConfig(
 )
 
 
-def convert_to_jpg(dest_dir) -> None:
+def convert(dest_dir) -> None:
+
+    # Function converts all pictures in dirrectory into webp's and jpg's
+    # Originals are deleting. Files are affected recursevile, file structure preserved
+
     number_of_files = 0
     list_of_files = []
     file_counter = 1
@@ -38,41 +42,42 @@ def convert_to_jpg(dest_dir) -> None:
     
     for file in list_of_files:
         
-        logging.info("Processing conversion, current: " + file + ", " + str(file_counter) + " out of " + str(number_of_files) + " files")
+        logging.info("Processing conversion, current: " + file + ", " + str(file_counter) + \
+                     " out of " + str(number_of_files) + " files")
         file_counter += 1
-
+        
         try:
+
+            #JPEG and WeBP are separated due to absence of alpha channel in JPEG
+
             image = Image.open(file)
             image = image.convert("RGBA")
 
             filename, extension = os.path.splitext(file)
 
             if str(extension) == ".webp":
-
                 white_mask = Image.new('RGB', image.size, (255, 255, 255))
-                image = white_mask.paste(image, (0, 0), image)
-
-                image.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)
-                break
+                Image.Image.paste(white_mask, image, (0, 0))
+                
+                white_mask.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)
+                continue
 
             if str(extension) == ".jpg":
-                
                 image.save(filename + ".webp", "webp", optimize = True, quality = 100)
-                break
+                continue
 
             image.save(filename + ".webp", "webp", optimize = True, quality = 100)
 
             white_mask = Image.new('RGB', image.size, (255, 255, 255))
-            image = white_mask.paste(image, (0, 0), image)
+            Image.Image.paste(white_mask, image, (0, 0))
 
-            image.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)   
+            white_mask.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)
             
         except Exception as error:
             logging.warning("Error while saving file " + file + " as webp, skipping. ", error)                
-            break
-        # os.remove(file)
+            continue
+        os.remove(file)
             
-                
 
 def replace_white_with_transparent(dest_dir) -> None:
     for root, dirs, files in os.walk(dest_dir):
@@ -217,7 +222,9 @@ def main(self) -> None:
     dest_dir = args.dest_dir
     donotresize = args.donotresize
     
-    convert_to_jpg(dest_dir)
+    #todo: take out file loop from function to upper level
+
+    convert(dest_dir)
     # replace_white_with_transparent(dest_dir)
     # resize(dest_dir, donotresize)
     # compress(dest_dir)
