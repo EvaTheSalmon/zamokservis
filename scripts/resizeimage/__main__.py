@@ -24,181 +24,104 @@ logging.basicConfig(
 )
 
 
-def convert(dest_dir) -> None:
+def convert(file) -> None:
 
     # Function converts all pictures in dirrectory into webp's and jpg's
     # Originals are deleting. Files are affected recursevile, file structure preserved
 
-    number_of_files = 0
-    list_of_files = []
-    file_counter = 1
+    #JPEG and WeBP are separated due to absence of alpha channel in JPEG
 
-    for root, dirs, files in os.walk(dest_dir):
-        for file in files:
-            list_of_files.append(os.path.join(root, file))
+    image = Image.open(file)
+    image = image.convert("RGBA")
 
-    number_of_files = len(list_of_files)
-    logging.info("Total files found: " + str(number_of_files))
+    filename, extension = os.path.splitext(file)
+
+    if str(extension) == ".webp":
+        white_mask = Image.new('RGB', image.size, (255, 255, 255))
+        Image.Image.paste(white_mask, image, (0, 0))
+        
+        white_mask.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)
+        return
+
+    if str(extension) == ".jpg":
+        image.save(filename + ".webp", "webp", optimize = True, quality = 100)
+        return
+
+    image.save(filename + ".webp", "webp", optimize = True, quality = 100)
+
+    white_mask = Image.new('RGB', image.size, (255, 255, 255))
+    Image.Image.paste(white_mask, image, (0, 0))
+
+    white_mask.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)
+
+    os.remove(file)
+            
+
+def replace_white_with_transparent(file) -> None:
     
-    for file in list_of_files:
-        
-        logging.info("Processing conversion, current: " + file + ", " + str(file_counter) + \
-                     " out of " + str(number_of_files) + " files")
-        file_counter += 1
-        
-        try:
+    # Function replaces white color with alpha channel for webp files
+   
+    _, fileextension = os.path.splitext(file)
+    if str(fileextension).lower() != ".wepb":
+        return
 
-            #JPEG and WeBP are separated due to absence of alpha channel in JPEG
+    print("fuck")
 
-            image = Image.open(file)
-            image = image.convert("RGBA")
-
-            filename, extension = os.path.splitext(file)
-
-            if str(extension) == ".webp":
-                white_mask = Image.new('RGB', image.size, (255, 255, 255))
-                Image.Image.paste(white_mask, image, (0, 0))
+    img = Image.open(file)
+    img = img.convert("RGBA")
+    
+    pixdata = img.load()
+    print(pixdata)
+    width, height = img.size
+    for y in range(height):
+        for x in range(width):
+            print(pixdata[x,y])
+            # if pixdata[x, y] == (255, 255, 255, 255):
                 
-                white_mask.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)
-                continue
+            #     pixdata[x, y] = (0, 0, 0, 0)
+    
+    img.save(file)
+    
 
-            if str(extension) == ".jpg":
-                image.save(filename + ".webp", "webp", optimize = True, quality = 100)
-                continue
+def resize(file) -> None:
 
-            image.save(filename + ".webp", "webp", optimize = True, quality = 100)
+    # Function resizes images to predifined picture heights for css @media at-rules for different screen sizes
 
-            white_mask = Image.new('RGB', image.size, (255, 255, 255))
-            Image.Image.paste(white_mask, image, (0, 0))
-
-            white_mask.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)
-            
-        except Exception as error:
-            logging.warning("Error while saving file " + file + " as webp, skipping. ", error)                
-            continue
-        os.remove(file)
-            
-
-def replace_white_with_transparent(dest_dir) -> None:
-    for root, dirs, files in os.walk(dest_dir):
-
-        number_of_files = len(next(os.walk(dest_dir))[2])
-        i = 1
+    with Image.open(file) as image:
+        width, height = image.size
         
-        for file in files:
+        imageALPHA = image.convert("RGBA")
+        image = image.convert("RGB")
 
-            filename, fileextension = os.path.splitext(file)
-            if str(fileextension).lower() != ".wepb":
-                break
-
-            file = root + str(os.sep) + file
-
-            logging.info("Processing removing bg, current: " + file + ", " + str(i) + " out of " + str(number_of_files) + " files")
-            
-            img = Image.open(file)
-            img = img.convert("RGBA")
-            
-            pixdata = img.load()
-            
-            width, height = img.size
-            for y in range(height):
-                for x in range(width):
-                    if pixdata[x, y] == (255, 255, 255, 255):
-                        pixdata[x, y] = (255, 255, 255, 0)
-            try:
-                img.save(file)
-            except Exception as error:
-                logging.warning("Couldn't save file " + file + " when removing white background. ", error)
-            i+=1
-
-
-def resize(dest_dir, donotresize) -> None:
-    for root, dirs, files in os.walk(dest_dir):
+        filename, _ = os.path.splitext(file)
         
-        number_of_files = len(next(os.walk(dest_dir))[2])
-        i = 1
-        
-        for file in files:
+        for res in resolutions:
             
-            file = root + str(os.sep) + file
+            res_name = str(resolutionsBase[resolutions.index(res)])
 
-            logging.info("Processing resizing, current: " + file + ", " + str(i) + " out of " + str(number_of_files) + " files")
-            
-            with Image.open(file) as image:
-                width, height = image.size
+            if (width > res or height > height * res / width):
                 
-                imageALPHA = image.convert("RGBA")
-                image = image.convert("RGB")
-
-                filename, fileextension = os.path.splitext(file)
-                j = 0
+                cover = resizeimage.resize_cover(image, [res, height * res / width], validate=False)
+                coverALPHA = resizeimage.resize_cover(imageALPHA, [res, height * res / width], validate=False)
                 
-                while j < len(resolutions):
-                    
-                    if (width > resolutions[j] or height > height * resolutions[j] / width) and not donotresize:
-                        cover = resizeimage.resize_cover(image, [resolutions[j], height * resolutions[j] / width],
-                                                            validate=False)
-                        
-                        coverALPHA = resizeimage.resize_cover(imageALPHA, [resolutions[j], height * resolutions[j] / width],
-                                                            validate=False)
-                        
-                        try:
-                            # save as jpg
-                            cover.save(filename + ".jpg", "jpeg", optimize=False, quality=100)
-                            
-                            # save as WebP
-                            coverALPHA.save(filename + ".webp", "WebP", quality=100)
+                cover.save(filename + res_name + ".jpg", "jpeg", optimize=False, quality=100)
+                coverALPHA.save(filename  + res_name + ".webp", "WebP", quality=100)
+                
+            else:
+                
+                cover = resizeimage.resize_cover(image, [width, height], validate=False)
+                coverALPHA = resizeimage.resize_cover(imageALPHA, [width, height], validate=False)
 
-                        except Exception as error:
-                            logging.warning("Error while saving file after resize " + file + ". ", error)
-                            break
-                        
-                    elif donotresize:
-                        coverALPHA = resizeimage.resize_cover(imageALPHA, [width, height], validate=False)
-                        
-                        try:
-                            # save as WebP
-                            coverALPHA.save(filename + ".webp", "WebP", quality=100)
-                        except Exception as error:
-                            logging.warning("Error while saving file after resize " + file + " as webp" + ". ", error)
-                            break
-                        
-                    else:
-                        
-                        cover = resizeimage.resize_cover(image, [width, height], validate=False)
-                        coverALPHA = resizeimage.resize_cover(imageALPHA, [width, height], validate=False)
-
-                        try:
-                            # save as jpg
-                            cover.save(filename + ".jpg", "jpeg", optimize=False, quality=100)
-                            
-                            # save as WebP
-                            coverALPHA.save(filename + ".webp", "WebP", quality=100)
-                        except Exception as error:
-                            logging.warning("Error while saving file after resize " + file + ". ", error)
-                            break
-                    j+=1
-                        
-def compress(dest_dir) -> None:
-    for root, dirs, files in os.walk(dest_dir):
-        
-        number_of_files = len(next(os.walk(dest_dir))[2])
-        i = 0
-        
-        for file in files:
+                cover.save(filename + res_name + ".jpg", "jpeg", optimize=False, quality=100)
+                coverALPHA.save(filename + res_name + ".webp", "WebP", quality=100)
             
-            file = root + str(os.sep) + file
 
-            logging.info("Processing compression, current: " + file + ", " + str(i) + " out of " + str(number_of_files) + " files")
-            
-            try:
-                image = Image.open(file)
+def compress(file) -> None:
 
-                image.save(file, optimize = True, quality = 70) # fallback file to display
-            except Exception as error:
-                logging.warning("Error while saving file " + file + " as webp, skipping. ", error)
-                break            
-            i+=1
+    # Function for image compression
+
+    image = Image.open(file)
+    image.save(file, optimize = True, quality = 70)
 
 
 def main(self) -> None:
@@ -222,12 +145,35 @@ def main(self) -> None:
     dest_dir = args.dest_dir
     donotresize = args.donotresize
     
-    #todo: take out file loop from function to upper level
 
-    convert(dest_dir)
-    # replace_white_with_transparent(dest_dir)
-    # resize(dest_dir, donotresize)
-    # compress(dest_dir)
+    number_of_files = 0
+    list_of_files = []
+    file_counter = 1
+
+    for root, dirs, files in os.walk(dest_dir):
+        for file in files:
+            list_of_files.append(os.path.join(root, file))
+
+    number_of_files = len(list_of_files)
+    logging.info("Total files found: " + str(number_of_files))
+
+    for file in list_of_files:
+        
+        logging.info("File: " + file + ". " + str(file_counter) + " out of " + str(number_of_files))
+        file_counter += 1
+
+        # logging.info("Converting...")
+        # convert(file)
+
+        logging.info("Removing white bg...")
+        replace_white_with_transparent(file)
+
+        # logging.info("Resizing...")
+        # if not donotresize:
+        #     resize(file)
+
+        # logging.info("Compressing...")
+        # compress(file)
 
 
 if __name__ == '__main__':
