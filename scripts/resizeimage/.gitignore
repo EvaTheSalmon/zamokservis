@@ -2,3 +2,4 @@ venv
 logs
 .test
 .test.zip
+__pycache__

@@ -2,6 +2,7 @@ import os.path
 import sys
 import argparse
 import logging
+import numpy as np
 
 from resizeimage import resizeimage
 from datetime import datetime
@@ -9,6 +10,7 @@ from PIL import Image
 
 resolutionsBase = [1080, 720, 414, 375, 360, 320] # display horizontal resolutions
 resolutions     = [972, 648, 373, 338, 324, 288]  # image horizontal resolutions
+qualityN        = 70
 
 if not os.path.exists("logs"):
         os.makedirs("logs")
@@ -60,32 +62,27 @@ def convert(file) -> None:
 def replace_white_with_transparent(file) -> None:
     
     # Function replaces white color with alpha channel for webp files
-   
-    _, fileextension = os.path.splitext(file)
-    if str(fileextension).lower() != ".wepb":
-        return
 
-    print("fuck")
+    _, extension = os.path.splitext(file)
 
-    img = Image.open(file)
-    img = img.convert("RGBA")
+    if not extension.lower()==".webp":
+        return 
     
-    pixdata = img.load()
-    print(pixdata)
-    width, height = img.size
-    for y in range(height):
-        for x in range(width):
-            print(pixdata[x,y])
-            # if pixdata[x, y] == (255, 255, 255, 255):
-                
-            #     pixdata[x, y] = (0, 0, 0, 0)
+    img = Image.open(file).convert("RGBA")
     
-    img.save(file)
+    array = np.array(img, dtype=np.ubyte)
+    mask = (array[:,:,:3] == (255, 255, 255)).all(axis=2)
+    alpha = np.where(mask, 0, 255)
+    array[:,:,-1] = alpha
+    
+    img = Image.fromarray(np.ubyte(array))
+    img.save(file, "WebP", quality=100)
     
 
 def resize(file) -> None:
 
     # Function resizes images to predifined picture heights for css @media at-rules for different screen sizes
+    # Also compression is done on this step
 
     with Image.open(file) as image:
         width, height = image.size
@@ -104,16 +101,16 @@ def resize(file) -> None:
                 cover = resizeimage.resize_cover(image, [res, height * res / width], validate=False)
                 coverALPHA = resizeimage.resize_cover(imageALPHA, [res, height * res / width], validate=False)
                 
-                cover.save(filename + res_name + ".jpg", "jpeg", optimize=False, quality=100)
-                coverALPHA.save(filename  + res_name + ".webp", "WebP", quality=100)
+                cover.save(filename + res_name + ".jpg", "jpeg", optimize=False, quality=qualityN)
+                coverALPHA.save(filename  + res_name + ".webp", "WebP", quality=qualityN)
                 
             else:
                 
                 cover = resizeimage.resize_cover(image, [width, height], validate=False)
                 coverALPHA = resizeimage.resize_cover(imageALPHA, [width, height], validate=False)
 
-                cover.save(filename + res_name + ".jpg", "jpeg", optimize=False, quality=100)
-                coverALPHA.save(filename + res_name + ".webp", "WebP", quality=100)
+                cover.save(filename + res_name + ".jpg", "jpeg", optimize=False, quality=qualityN)
+                coverALPHA.save(filename + res_name + ".webp", "WebP", quality=qualityN)
             
 
 def compress(file) -> None:
@@ -121,7 +118,7 @@ def compress(file) -> None:
     # Function for image compression
 
     image = Image.open(file)
-    image.save(file, optimize = True, quality = 70)
+    image.save(file, optimize = True, quality = qualityN)
 
 
 def main(self) -> None:
@@ -135,15 +132,14 @@ def main(self) -> None:
     )
     
     parser.add_argument(
-        "donotresize",
-        metavar="do-not-resize",
+        "--do_not_resize",
         action=argparse.BooleanOptionalAction,
         help="skip resizing for files in folder"
     )
 
     args = parser.parse_args()
     dest_dir = args.dest_dir
-    donotresize = args.donotresize
+    donotresize = args.do_not_resize
     
 
     number_of_files = 0
@@ -162,18 +158,18 @@ def main(self) -> None:
         logging.info("File: " + file + ". " + str(file_counter) + " out of " + str(number_of_files))
         file_counter += 1
 
-        # logging.info("Converting...")
-        # convert(file)
+        logging.info("Converting...")
+        convert(file)
+
+        logging.info("Resizing...")
+        if not donotresize:
+            resize(file)
 
         logging.info("Removing white bg...")
         replace_white_with_transparent(file)
 
-        # logging.info("Resizing...")
-        # if not donotresize:
-        #     resize(file)
-
-        # logging.info("Compressing...")
-        # compress(file)
+        logging.info("Compressing...")
+        compress(file)
 
 
 if __name__ == '__main__':
