@@ -10,7 +10,7 @@ from PIL import Image
 
 resolutionsBase = [1080, 720, 414, 375, 360, 320] # display horizontal resolutions
 resolutions     = [972, 648, 373, 338, 324, 288]  # image horizontal resolutions
-qualityN        = 70
+qualityN        = 70                              # Output image quality
 
 if not os.path.exists("logs"):
         os.makedirs("logs")
@@ -29,32 +29,27 @@ logging.basicConfig(
 def convert(file) -> None:
 
     # Function converts all pictures in dirrectory into webp's and jpg's
-    # Originals are deleting. Files are affected recursevile, file structure preserved
-
+    # Non jpg or webp files will be removed. 
+    # Files are affected recursevile, file structure preserved
     #JPEG and WeBP are separated due to absence of alpha channel in JPEG
 
     image = Image.open(file)
-    image = image.convert("RGBA")
+
+    image = image.convert("RGB")
+    imageALPHA = image.convert("RGBA")
 
     filename, extension = os.path.splitext(file)
 
     if str(extension) == ".webp":
-        white_mask = Image.new('RGB', image.size, (255, 255, 255))
-        Image.Image.paste(white_mask, image, (0, 0))
-        
-        white_mask.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)
+        image.save(filename + ".jpg", "jpeg", optimize = False, quality = 100)
         return
 
     if str(extension) == ".jpg":
-        image.save(filename + ".webp", "webp", optimize = True, quality = 100)
+        imageALPHA.save(filename + ".webp", "webp", optimize = False, quality = 100)
         return
 
-    image.save(filename + ".webp", "webp", optimize = True, quality = 100)
-
-    white_mask = Image.new('RGB', image.size, (255, 255, 255))
-    Image.Image.paste(white_mask, image, (0, 0))
-
-    white_mask.save(filename + ".jpg", "jpeg", optimize = True, quality = 100)
+    imageALPHA.save(filename + ".webp", "webp",  optimize = False, quality = 100)
+    image.save(filename + ".jpg", "jpeg", optimize = False, quality = 100)
 
     os.remove(file)
             
@@ -67,16 +62,17 @@ def replace_white_with_transparent(file) -> None:
 
     if not extension.lower()==".webp":
         return 
-    
-    img = Image.open(file).convert("RGBA")
-    
-    array = np.array(img, dtype=np.ubyte)
+
+    image = Image.open(file)
+    image = image.convert("RGBA")
+
+    array = np.array(image, dtype=np.ubyte)
     mask = (array[:,:,:3] == (255, 255, 255)).all(axis=2)
     alpha = np.where(mask, 0, 255)
     array[:,:,-1] = alpha
     
-    img = Image.fromarray(np.ubyte(array))
-    img.save(file, "WebP", quality=100)
+    image = Image.fromarray(np.ubyte(array))
+    image.save(file, "WebP", optimize = False, quality=100)
     
 
 def resize(file) -> None:
@@ -87,30 +83,40 @@ def resize(file) -> None:
     with Image.open(file) as image:
         width, height = image.size
         
-        imageALPHA = image.convert("RGBA")
         image = image.convert("RGB")
+        imageALPHA = image.convert("RGBA")
 
-        filename, _ = os.path.splitext(file)
+        filename, extension = os.path.splitext(file)
         
         for res in resolutions:
             
             res_name = str(resolutionsBase[resolutions.index(res)])
 
-            if (width > res or height > height * res / width):
+            # If image is larger than one of @media at-rules or it is portrait
+
+            if (width > res or height > height * res / width): 
                 
-                cover = resizeimage.resize_cover(image, [res, height * res / width], validate=False)
-                coverALPHA = resizeimage.resize_cover(imageALPHA, [res, height * res / width], validate=False)
+                if extension.lower()==".jpg":
+
+                    cover = resizeimage.resize_cover(image, [res, height * res / width], validate=False)
+                    cover.save(filename + res_name + ".jpg", "jpeg", optimize=True, quality=qualityN)
                 
-                cover.save(filename + res_name + ".jpg", "jpeg", optimize=False, quality=qualityN)
-                coverALPHA.save(filename  + res_name + ".webp", "WebP", quality=qualityN)
+                else:
+
+                    coverALPHA = resizeimage.resize_cover(imageALPHA, [res, height * res / width], validate=False)
+                    coverALPHA.save(filename  + res_name + ".webp", "WebP", optimize = True, quality=qualityN)
                 
             else:
                 
-                cover = resizeimage.resize_cover(image, [width, height], validate=False)
-                coverALPHA = resizeimage.resize_cover(imageALPHA, [width, height], validate=False)
+                if extension.lower()==".jpg":
 
-                cover.save(filename + res_name + ".jpg", "jpeg", optimize=False, quality=qualityN)
-                coverALPHA.save(filename + res_name + ".webp", "WebP", quality=qualityN)
+                    cover = resizeimage.resize_cover(image, [width, height], validate=False)
+                    cover.save(filename + res_name + ".jpg", "jpeg", optimize=True, quality=qualityN)
+                
+                else:
+
+                    coverALPHA = resizeimage.resize_cover(imageALPHA, [width, height], validate=False)
+                    coverALPHA.save(filename + res_name + ".webp", "WebP", optimize = True, quality=qualityN)
             
 
 def compress(file) -> None:
@@ -146,7 +152,7 @@ def main(self) -> None:
     list_of_files = []
     file_counter = 1
 
-    for root, dirs, files in os.walk(dest_dir):
+    for root, _, files in os.walk(dest_dir):
         for file in files:
             list_of_files.append(os.path.join(root, file))
 
@@ -161,12 +167,12 @@ def main(self) -> None:
         logging.info("Converting...")
         convert(file)
 
+        logging.info("Removing white bg...")
+        replace_white_with_transparent(file)
+
         logging.info("Resizing...")
         if not donotresize:
             resize(file)
-
-        logging.info("Removing white bg...")
-        replace_white_with_transparent(file)
 
         logging.info("Compressing...")
         compress(file)
