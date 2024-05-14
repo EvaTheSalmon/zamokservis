@@ -4,13 +4,12 @@ import argparse
 import logging
 import numpy as np
 
-from resizeimage import resizeimage
 from datetime import datetime
 from PIL import Image
 from pathlib import Path
 
-resolutionsBase = [1080, 720, 414, 375, 360, 320]  # display horizontal resolutions
-resolutions = [972, 648, 373, 338, 324, 288]  # image horizontal resolutions
+width_canonical = [1080, 720, 414, 375, 360, 320]  # display !horizontal resolutions
+width_modified = [972, 648, 373, 338, 324, 288]  # image !horizontal resolutions
 qualityN: int = 70  # Output image quality
 
 if not Path("logs").is_dir():
@@ -28,7 +27,12 @@ logging.basicConfig(
 )
 
 
-def convert(file: str) -> None:
+def pr_arr(arr):
+    for i in arr:
+        print(i)
+
+
+def convert(file: str, list_of_files: list[str]) -> None:
     """
     Function converts all pictures in dirrectory into webp's and jpg's
     Non jpg or webp files will be removed.
@@ -44,38 +48,40 @@ def convert(file: str) -> None:
 
     if str(extension) == ".webp":
 
-        bg = Image.new("RGBA", image.size, (255,255,255))
-        
+        bg = Image.new("RGBA", image.size, (255, 255, 255))
+
         alpha_composite = Image.alpha_composite(bg, image).convert("RGB")
-        
+
         alpha_composite.save(
             f"{path_no_extenstion}.jpg", "jpeg", optimize=False, quality=100
         )
+        list_of_files.append(f"{path_no_extenstion}.jpg")
 
         return
 
     elif str(extension) == ".jpg":
-        
-        image.save(
-            f"{path_no_extenstion}.webp", "webp", optimize=False, quality=100
-        )
+
+        image.save(f"{path_no_extenstion}.webp", "webp", optimize=False, quality=100)
+        list_of_files.append(f"{path_no_extenstion}.webp")
 
         return
 
     else:
-        bg = Image.new("RGBA", image.size, (255,255,255))
-            
+        bg = Image.new("RGBA", image.size, (255, 255, 255))
+
         alpha_composite = Image.alpha_composite(bg, image).convert("RGB")
-        
+
         alpha_composite.save(
             f"{path_no_extenstion}.jpg", "jpeg", optimize=False, quality=100
         )
+        list_of_files.append(f"{path_no_extenstion}.jpg")
 
-        image.save(
-            f"{path_no_extenstion}.webp", "webp", optimize=False, quality=100
-        )
+        image.save(f"{path_no_extenstion}.webp", "webp", optimize=False, quality=100)
+        list_of_files.append(f"{path_no_extenstion}.webp")
 
-    os.remove(file)
+        os.remove(file)
+
+        list_of_files.remove(file)
 
 
 def replace_white_with_transparent(file: str) -> None:
@@ -89,14 +95,21 @@ def replace_white_with_transparent(file: str) -> None:
         return
 
     image = Image.open(file)
-    image = image.convert("RGBA")
+    if image.mode != "RGBA":
+        image = image.convert("RGBA")
 
-    array = np.array(image, dtype=np.ubyte)
-    mask = (array[:, :, :3] == (255, 255, 255)).all(axis=2)
-    alpha = np.where(mask, 0, 255)
-    array[:, :, -1] = alpha
+    data = image.getdata()
+    data_transparent_background = []
 
-    image = Image.fromarray(np.ubyte(array))
+    for pixel in data:
+        if pixel[0] > 240 and pixel[1] > 240 and pixel[2] > 240:
+            data_transparent_background.append((255, 255, 255, 0))
+
+        else:
+            data_transparent_background.append(pixel)
+
+    image.putdata(data_transparent_background)
+
     image.save(file, "WebP", optimize=False, quality=100)
 
 
@@ -109,63 +122,23 @@ def resize(file: str) -> None:
     with Image.open(file) as image:
         width, height = image.size
 
-        image = image.convert("RGB")
-        imageALPHA = image.convert("RGBA")
-
         filename = Path(file).stem
         extension = Path(file).suffix
         path_no_extenstion = Path(file).with_suffix("")
 
-        for res, res_name in zip(resolutions, resolutionsBase):
+        for width_target, width_name in zip(width_modified, width_canonical):
 
-            # If image is larger than one of @media at-rules or it is portrait
+            if width <= width_target:
+                image.save(f"{path_no_extenstion}{width_name}{extension}")
+                continue
 
-            if width > res or height > height * res / width:
-
-                if extension.lower() == ".jpg":
-
-                    cover = resizeimage.resize_cover(
-                        image, [res, height * res / width], validate=False
-                    )
-                    
-                    cover.save(
-                        f"{path_no_extenstion}{res_name}.jpg",
-                        "jpeg",
-                        optimize=True,
-                        quality=qualityN,
-                    )
-
-                else:
-
-                    coverALPHA = resizeimage.resize_cover(
-                        imageALPHA, [res, height * res / width], validate=False
-                    )
-
-            else:
-
-                if extension.lower() == ".jpg":
-
-                    cover = resizeimage.resize_cover(
-                        image, [width, height], validate=False
-                    )
-                    cover.save(
-                        f"{path_no_extenstion}{res_name}.jpg",
-                        "jpeg",
-                        optimize=True,
-                        quality=qualityN,
-                    )
-
-                else:
-
-                    coverALPHA = resizeimage.resize_cover(
-                        imageALPHA, [width, height], validate=False
-                    )
-                    coverALPHA.save(
-                        f"{path_no_extenstion}{res_name}.webp",
-                        "WebP",
-                        optimize=True,
-                        quality=qualityN,
-                    )
+            height_target = int(
+                width_target * (height / width)
+            )  # new width with propper aspect ratio
+            resized_image = image.resize(
+                (width_target, height_target), Image.Resampling.BICUBIC
+            )
+            resized_image.save(f"{path_no_extenstion}{width_name}{extension}")
 
 
 def compress(file) -> None:
@@ -203,8 +176,10 @@ def main(self) -> None:
     donotresize = args.do_not_resize
 
     number_of_files = 0
-    list_of_files = []
     file_counter = 1
+
+    list_of_files = []
+    processed_files = set()
 
     for root, _, files in os.walk(dest_dir):
         for file in files:
@@ -214,22 +189,31 @@ def main(self) -> None:
     logging.info(f"Total files found: {number_of_files}")
 
     for file in list_of_files:
+        
+        print(f'Is in? : {bool(set(processed_files) & set(file))}')
+        if not bool(set(processed_files) & set(file)):
 
-        logging.info(f"File: {file}. {file_counter} out of {number_of_files}")
-        file_counter += 1
+            processed_files.add(file)
 
-        logging.info("Converting...")
-        convert(file)
+            print(f'current processed data is')
+            pr_arr(processed_files)
 
-        logging.info("Removing white bg...")
-        replace_white_with_transparent(file)
+            logging.info(f"File: {file}. {file_counter} out of {number_of_files}")
+            file_counter += 1
 
-        # logging.info("Resizing...")
-        # if not donotresize:
-        #     resize(file)
+            # logging.info("Converting...")
+            convert(file, list_of_files)
+            number_of_files = len(list_of_files)
+            
+            # logging.info("Removing white bg...")
+            replace_white_with_transparent(file)
 
-        # logging.info("Compressing...")
-        # compress(file)
+            # logging.info("Resizing...")
+            if not donotresize:
+                resize(file)
+
+            # logging.info("Compressing...")
+            # compress(file)
 
 
 if __name__ == "__main__":
