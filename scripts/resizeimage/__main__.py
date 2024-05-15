@@ -2,7 +2,6 @@ import os.path
 import sys
 import argparse
 import logging
-import numpy as np
 
 from datetime import datetime
 from PIL import Image
@@ -25,11 +24,6 @@ logging.basicConfig(
         logging.StreamHandler(sys.stdout),
     ],
 )
-
-
-def pr_arr(arr):
-    for i in arr:
-        print(i)
 
 
 def convert(file: str, list_of_files: list[str]) -> None:
@@ -55,18 +49,25 @@ def convert(file: str, list_of_files: list[str]) -> None:
         alpha_composite.save(
             f"{path_no_extenstion}.jpg", "jpeg", optimize=False, quality=100
         )
-        list_of_files.append(f"{path_no_extenstion}.jpg")
 
-        return
+        if f"{path_no_extenstion}.jpg" not in set(list_of_files):
+            list_of_files.append(f"{path_no_extenstion}.jpg")
+
+        return list_of_files
+    
+        
 
     elif str(extension) == ".jpg":
 
         image.save(f"{path_no_extenstion}.webp", "webp", optimize=False, quality=100)
-        list_of_files.append(f"{path_no_extenstion}.webp")
 
-        return
+        if f"{path_no_extenstion}.webp" not in set(list_of_files):
+            list_of_files.append(f"{path_no_extenstion}.webp")
+
+        return list_of_files
 
     else:
+
         bg = Image.new("RGBA", image.size, (255, 255, 255))
 
         alpha_composite = Image.alpha_composite(bg, image).convert("RGB")
@@ -74,14 +75,20 @@ def convert(file: str, list_of_files: list[str]) -> None:
         alpha_composite.save(
             f"{path_no_extenstion}.jpg", "jpeg", optimize=False, quality=100
         )
-        list_of_files.append(f"{path_no_extenstion}.jpg")
+
+        if f"{path_no_extenstion}.jpg" not in set(list_of_files):
+            list_of_files.append(f"{path_no_extenstion}.jpg")
 
         image.save(f"{path_no_extenstion}.webp", "webp", optimize=False, quality=100)
-        list_of_files.append(f"{path_no_extenstion}.webp")
+
+        if f"{path_no_extenstion}.webp" not in set(list_of_files):
+            list_of_files.append(f"{path_no_extenstion}.webp")
 
         os.remove(file)
 
         list_of_files.remove(file)
+
+        return list_of_files
 
 
 def replace_white_with_transparent(file: str) -> None:
@@ -89,6 +96,7 @@ def replace_white_with_transparent(file: str) -> None:
     Function replaces white color with alpha channel for webp files
     """
 
+    whiteness = 235  # out of 255
     extension = Path(file).suffix
 
     if not extension.lower() == ".webp":
@@ -102,7 +110,7 @@ def replace_white_with_transparent(file: str) -> None:
     data_transparent_background = []
 
     for pixel in data:
-        if pixel[0] > 240 and pixel[1] > 240 and pixel[2] > 240:
+        if pixel[0] > whiteness and pixel[1] > whiteness and pixel[2] > whiteness:
             data_transparent_background.append((255, 255, 255, 0))
 
         else:
@@ -111,7 +119,7 @@ def replace_white_with_transparent(file: str) -> None:
     image.putdata(data_transparent_background)
 
     image.save(file, "WebP", optimize=False, quality=100)
-
+    logging.info("File saved")
 
 def resize(file: str) -> None:
     """
@@ -175,45 +183,37 @@ def main(self) -> None:
     dest_dir = args.dest_dir
     donotresize = args.do_not_resize
 
-    number_of_files = 0
-    file_counter = 1
-
     list_of_files = []
-    processed_files = set()
 
     for root, _, files in os.walk(dest_dir):
         for file in files:
             list_of_files.append(os.path.join(root, file))
 
     number_of_files = len(list_of_files)
+    file_counter = 0
+
     logging.info(f"Total files found: {number_of_files}")
 
-    for file in list_of_files:
-        
-        print(f'Is in? : {bool(set(processed_files) & set(file))}')
-        if not bool(set(processed_files) & set(file)):
+    while file_counter < number_of_files:
 
-            processed_files.add(file)
+        file = list_of_files[file_counter]
 
-            print(f'current processed data is')
-            pr_arr(processed_files)
+        logging.info(f"File: {file}. {file_counter + 1} out of {number_of_files}")
+        file_counter += 1
 
-            logging.info(f"File: {file}. {file_counter} out of {number_of_files}")
-            file_counter += 1
+        logging.info("Converting...")
+        list_of_files = convert(file, list_of_files)
+        number_of_files = len(list_of_files)
 
-            # logging.info("Converting...")
-            convert(file, list_of_files)
-            number_of_files = len(list_of_files)
-            
-            # logging.info("Removing white bg...")
-            replace_white_with_transparent(file)
+        logging.info("Removing white bg...")
+        replace_white_with_transparent(file)
 
-            # logging.info("Resizing...")
-            if not donotresize:
-                resize(file)
+        logging.info("Resizing...")
+        if not donotresize:
+            resize(file)
 
-            # logging.info("Compressing...")
-            # compress(file)
+        # logging.info("Compressing...")
+        # compress(file)
 
 
 if __name__ == "__main__":
