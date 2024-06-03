@@ -26,7 +26,7 @@ logging.basicConfig(
 )
 
 
-def convert(file: str, list_of_files: list[str]) -> None:
+def convert(file: str) -> None:
     """
     Function converts all pictures in dirrectory into webp's and jpg's
     Non jpg or webp files will be removed.
@@ -50,21 +50,9 @@ def convert(file: str, list_of_files: list[str]) -> None:
             f"{path_no_extenstion}.jpg", "jpeg", optimize=False, quality=100
         )
 
-        if f"{path_no_extenstion}.jpg" not in set(list_of_files):
-            list_of_files.append(f"{path_no_extenstion}.jpg")
-
-        return list_of_files
-    
-        
-
     elif str(extension) == ".jpg":
 
         image.save(f"{path_no_extenstion}.webp", "webp", optimize=False, quality=100)
-
-        if f"{path_no_extenstion}.webp" not in set(list_of_files):
-            list_of_files.append(f"{path_no_extenstion}.webp")
-
-        return list_of_files
 
     else:
 
@@ -76,19 +64,9 @@ def convert(file: str, list_of_files: list[str]) -> None:
             f"{path_no_extenstion}.jpg", "jpeg", optimize=False, quality=100
         )
 
-        if f"{path_no_extenstion}.jpg" not in set(list_of_files):
-            list_of_files.append(f"{path_no_extenstion}.jpg")
-
         image.save(f"{path_no_extenstion}.webp", "webp", optimize=False, quality=100)
 
-        if f"{path_no_extenstion}.webp" not in set(list_of_files):
-            list_of_files.append(f"{path_no_extenstion}.webp")
-
         os.remove(file)
-
-        list_of_files.remove(file)
-
-        return list_of_files
 
 
 def replace_white_with_transparent(file: str) -> None:
@@ -120,6 +98,7 @@ def replace_white_with_transparent(file: str) -> None:
 
     image.save(file, "WebP", optimize=False, quality=100)
     logging.info("File saved")
+
 
 def resize(file: str) -> None:
     """
@@ -158,6 +137,15 @@ def compress(file) -> None:
     image.save(file, optimize=True, quality=qualityN)
 
 
+def scan_dir_for_files(dest_dir: str) -> list[str]:
+    list_of_files = []
+    for root, _, files in os.walk(dest_dir):
+        for file in files:
+            list_of_files.append(os.path.join(root, file))
+
+    return list_of_files
+
+
 def main(self) -> None:
 
     parser = argparse.ArgumentParser(
@@ -185,35 +173,50 @@ def main(self) -> None:
 
     list_of_files = []
 
-    for root, _, files in os.walk(dest_dir):
-        for file in files:
-            list_of_files.append(os.path.join(root, file))
-
+    list_of_files = scan_dir_for_files(dest_dir)
     number_of_files = len(list_of_files)
     file_counter = 0
 
+    logging.info(f"Starting converting...")
     logging.info(f"Total files found: {number_of_files}")
 
     while file_counter < number_of_files:
 
         file = list_of_files[file_counter]
 
-        logging.info(f"File: {file}. {file_counter + 1} out of {number_of_files}")
+        logging.info(
+            f"Converting file: {file}. {file_counter + 1} out of {number_of_files}"
+        )
+        convert(file)
+
         file_counter += 1
 
-        logging.info("Converting...")
-        list_of_files = convert(file, list_of_files)
-        number_of_files = len(list_of_files)
+    list_of_files = scan_dir_for_files(dest_dir)
+    number_of_files = len(list_of_files)
+    file_counter = 0
+
+    logging.info(f"Starting removing bg, (resizing) and compressing...")
+    logging.info(f"Total files found: {number_of_files}")
+
+    while file_counter < number_of_files:
+
+        file = list_of_files[file_counter]
+
+        logging.info(
+            f"Processing file: {file}. {file_counter + 1} out of {number_of_files}"
+        )
 
         logging.info("Removing white bg...")
         replace_white_with_transparent(file)
 
-        logging.info("Resizing...")
         if not donotresize:
+            logging.info("Resizing...")
             resize(file)
 
-        # logging.info("Compressing...")
-        # compress(file)
+        logging.info("Compressing...")
+        compress(file)
+
+        file_counter += 1
 
 
 if __name__ == "__main__":
