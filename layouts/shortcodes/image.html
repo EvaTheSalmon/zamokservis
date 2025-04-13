@@ -1,0 +1,29 @@
+{{ $image := .Page.Resources.GetMatch (.Get "src") }}
+{{ $alt := .Get "alt" }}
+{{ $class := .Get "class" | default "" }}
+{{ $width := .Get "width" | default "800" }}
+{{ $height := .Get "height" | default "600" }}
+
+{{ if $image }}
+    {{ $original := $image }}
+    {{ $webp := $image.Resize (printf "%sx%s webp" $width $height) }}
+    {{ $jpeg := $image.Resize (printf "%sx%s jpeg" $width $height) }}
+    
+    <picture>
+        <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+        <source srcset="{{ $jpeg.RelPermalink }}" type="image/jpeg">
+        <img src="{{ $jpeg.RelPermalink }}" 
+             alt="{{ $alt }}" 
+             class="{{ $class }}"
+             width="{{ $width }}"
+             height="{{ $height }}"
+             loading="lazy">
+    </picture>
+{{ else }}
+    <img src="{{ .Get "src" }}" 
+         alt="{{ $alt }}" 
+         class="{{ $class }}"
+         width="{{ $width }}"
+         height="{{ $height }}"
+         loading="lazy">
+{{ end }} 

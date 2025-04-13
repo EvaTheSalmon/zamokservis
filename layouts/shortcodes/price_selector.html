@@ -67,7 +67,7 @@
 
     {{$scripts := resources.Get "js/configPrice.js"}}
 
-    {{ if .Site.IsServer }}
+    {{ if hugo.IsDevelopment }}
     <script type="text/javascript" src="{{ ($scripts).RelPermalink }}"></script>
     {{ else }}
     <script type="text/javascript" src="{{ ($scripts | babel | minify | resources.Fingerprint).RelPermalink }}" integrity="{{ $scripts.Data.Integrity }}" defer></script>

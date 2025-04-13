@@ -74,7 +74,7 @@
 </div>
 {{$scripts := resources.Get "js/hidebut.js"}}
 
-{{ if .Site.IsServer }}
+{{ if hugo.IsDevelopment }}
 <script type="text/javascript" src="{{ ($scripts).RelPermalink }}"></script>
 {{ else }}
 <script type="text/javascript" src="{{ ($scripts | babel | minify ).RelPermalink }}" defer></script>

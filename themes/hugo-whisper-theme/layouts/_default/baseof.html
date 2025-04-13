@@ -3,26 +3,28 @@
 
 <head>
   <meta charset="utf-8">
-  {{$dir := replace .File.Dir `\` "/"}}
-  {{$name := replace .File.Path ".md" ""}}
+  {{ with .File }}
+    {{$dir := replace .Dir `\` "/"}}
+    {{$name := replace .Path ".md" ""}}
 
-  {{ if and (eq .File.ContentBaseName "_index") (eq $dir "/") }}
-    <link rel=amphtml href=https://zamokservis.com/amp/index.amp.html>
-  {{ else if and (eq .File.ContentBaseName "_index") (not (in .File.Dir "blog")) (not (in .File.Dir "cities"))}}
-    <link rel=amphtml href=https://zamokservis.com/amp/{{replace $dir "/" ""}}.amp.html>
-  {{ else if and (in .File.Dir "ustanovka-zamkov") }}
-    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 17) "/" ""}}.amp.html>
-  {{ else if and (in .File.Dir "vskrytie-dverej") }}
-    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 15) "/" ""}}.amp.html>
-  {{ else if and (in .File.Dir "vskrytie-avtomobilej") }}
-    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 20) "/" ""}}.amp.html>
-  {{ else if or (in .File.Dir "blog") (in .File.Dir "cities") (in .File.Dir "tipy-zamkov") (in .File.Dir "404") (in .File.Dir "tags")}}
+    {{ if and (eq .ContentBaseName "_index") (eq $dir "/") }}
+      <link rel=amphtml href=https://zamokservis.com/amp/index.amp.html>
+    {{ else if and (eq .ContentBaseName "_index") (not (in .Dir "blog")) (not (in .Dir "cities"))}}
+      <link rel=amphtml href=https://zamokservis.com/amp/{{replace $dir "/" ""}}.amp.html>
+    {{ else if and (in .Dir "ustanovka-zamkov") }}
+      <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 17) "/" ""}}.amp.html>
+    {{ else if and (in .Dir "vskrytie-dverej") }}
+      <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 15) "/" ""}}.amp.html>
+    {{ else if and (in .Dir "vskrytie-avtomobilej") }}
+      <link rel=amphtml href=https://zamokservis.com/amp/{{ replace (substr $dir 20) "/" ""}}.amp.html>
+    {{ else if or (in .Dir "blog") (in .Dir "cities") (in .Dir "tipy-zamkov") (in .Dir "404") (in .Dir "tags")}}
 
-  {{ else if or (eq $name "contact-us") (eq $name "how-we-work") (eq $name "company-info") (eq $name "company-info") (eq $name "prices") (eq $name "support") (eq $name "terms-and-conditions") (eq $name "faq") (eq $name "tipy-zamkov") }}
+    {{ else if or (eq $name "contact-us") (eq $name "how-we-work") (eq $name "company-info") (eq $name "company-info") (eq $name "prices") (eq $name "support") (eq $name "terms-and-conditions") (eq $name "faq") (eq $name "tipy-zamkov") }}
 
-  {{else}}
-    <link rel=amphtml href=https://zamokservis.com/amp/{{ replace $dir "/" ""}}.amp.html>
-  {{end}}
+    {{else}}
+      <link rel=amphtml href=https://zamokservis.com/amp/{{ replace $dir "/" ""}}.amp.html>
+    {{end}}
+  {{ end }}
 
   <link rel=canonical href={{ add "https://zamokservis.com" .RelPermalink }}>
 
@@ -58,12 +60,12 @@
   <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#2d2d2d" media="(prefers-color-scheme: dark)">
 
-  {{- if .Site.IsServer -}}
+  {{- if hugo.IsServer -}}
       {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" (print "css/main.css") "enableSourceMap" false)}}
       <link rel=preload as=style href="{{ ($style).RelPermalink }}">
       <link rel="stylesheet" type=text/css href="{{ ($style).RelPermalink }}">
   {{ else }}
-      {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" (print "css/main.css") "enableSourceMap" false) | resources.PostCSS | minify}}
+      {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" (print "css/main.css") "enableSourceMap" false) | css.PostCSS | minify}}
       <link rel=preload as=style href="{{ ($style).RelPermalink }}">
       <link rel="stylesheet" type=text/css href="{{ ($style).RelPermalink }}">
 
@@ -98,7 +100,7 @@
 <!--        <div class=top_pic></div>-->
         <div class=sign>
           <a href=tel:+79219405094 class=phone_link title=Телефон>
-            <span class=phone>+7 (921) 940 50 94</span>
+            <span class=phone>+7&#160;(921)&#160;940&#160;50&#160;94</span>
           </a>
         </div>
       <div class=theme-switch onclick="change_theme()">
@@ -141,7 +143,7 @@
   {{ block "footer_js" . }}
   {{ end }}
 
-  {{ if .Site.IsServer }}
+  {{ if hugo.IsServer }}
   <script type="text/javascript" src="{{ ($scripts).RelPermalink }}"></script>
   {{ else }}
   <script type="text/javascript" src="{{ ($scripts | babel | minify | resources.Fingerprint).RelPermalink }}" integrity="{{ $scripts.Data.Integrity }}"></script>

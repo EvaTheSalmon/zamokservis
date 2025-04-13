@@ -13,11 +13,13 @@
             {{ .Content }}
           {{end}}
 
-          {{ if or (in .File.Path "cities") (in .File.Path "blog") }}
-            {{ range.Pages }}
-            {{ .Render "summary" }}
-            {{ end }}
-          {{end}}
+          {{ with .File }}
+            {{ if or (in .Path "cities") (in .Path "blog") }}
+              {{ range $.Pages }}
+                {{ .Render "summary" }}
+              {{ end }}
+            {{end}}
+          {{ end }}
         </div>
         <a class="button button-primary mb-2" href="{{ .Site.Params.homepage_button_link | relURL }}">
           {{ .Site.Params.homepage_button_text }}
@@ -26,6 +28,5 @@
     </div>
   </div>
 </div>
-
 
 {{ end }}

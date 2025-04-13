@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" }}
+{{ $class := .Get "class" | default "" }}
+
+{{ $imagePath := printf "/img/%s" $src }}
+
+<img src="{{ $imagePath }}" 
+     alt="{{ $alt }}" 
+     class="{{ $class }}"
+     loading="lazy"> 

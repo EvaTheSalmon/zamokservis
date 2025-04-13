@@ -12,3 +12,4 @@
 /package-lock.json
 *.zip
 .vscode
+.hugo_build.lock

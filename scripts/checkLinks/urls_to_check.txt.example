@@ -1,0 +1,16 @@
+# Список URL для проверки
+# Каждый URL должен быть на новой строке
+# Строки, начинающиеся с #, игнорируются (комментарии)
+# Пустые строки также игнорируются
+
+# Главная страница
+https://beta.zamokservis.com/
+
+# Пример страницы блога
+https://beta.zamokservis.com/blog/example-post/
+
+# Пример страницы города
+https://beta.zamokservis.com/cities/example-city/
+
+# Пример страницы услуги
+https://beta.zamokservis.com/vskrytie-dverej/example-door/ 
